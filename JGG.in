@@ -21,10 +21,10 @@ param JGG_inside_coil_steel_length=$JGG_length-2*$JGG_coil_assembly_thickness_z
 
 
 group JGG length=$JGG_length material=Air
-      box side_steel width=$JGG_side_steel_width height=$JGG_height length=$JGG_length material=Fe kill=$kill_aperture color=0.6,0.6,0.6
-      box top_bottom_steel width=$JGG_horizontal_aperture height=$JGG_top_bottom_steel_height length=$JGG_length material=Fe kill=$kill_aperture color=0.6,0.6,0.6
-      box coil_assembly width=$JGG_coil_assembly_width height=$JGG_coil_assembly_height length=$JGG_length material=Al kill=$kill_aperture color=1,0,1
-      box inside_coil_steel width=$JGG_inside_coil_steel_width height=$JGG_coil_assembly_height length=$JGG_inside_coil_steel_length material=Fe kill=$kill_aperture color=0.6,0.6,0.6
+      box side_steel width=$JGG_side_steel_width height=$JGG_height length=$JGG_length material=Fe kill=$kill_aperture color=0,0.2,0
+      box top_bottom_steel width=$JGG_horizontal_aperture height=$JGG_top_bottom_steel_height length=$JGG_length material=Fe kill=$kill_aperture color=0,0.2,0
+      box coil_assembly width=$JGG_coil_assembly_width height=$JGG_coil_assembly_height length=$JGG_length material=Al kill=$kill_aperture color=0.6,0.6,0.6
+      box inside_coil_steel width=$JGG_inside_coil_steel_width height=$JGG_coil_assembly_height length=$JGG_inside_coil_steel_length material=Fe kill=$kill_aperture color=0,0.2,0
 
       place side_steel x=0.5*($JGG_width-$JGG_side_steel_width) y=0 z=0
       place side_steel x=-0.5*($JGG_width-$JGG_side_steel_width) y=0 z=0
