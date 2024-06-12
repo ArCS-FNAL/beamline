@@ -23,7 +23,7 @@ param kill_aperture=0
 
 #Import JGG magnet definition and fieldmap
 include JGG.in
-fieldmap JGG_field file="MIPPFieldMapForG4Beamline.txt"
+fieldmap JGG_field file=jgg_field_map.txt
 
  
 param histoFile=sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.root
