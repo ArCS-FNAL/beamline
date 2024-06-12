@@ -16,7 +16,7 @@ setup g4surface v2_1_1
 source ${CONDOR_DIR_INPUT}/G4beamline-3.06-06102024/G4beamline-3.06/bin/g4bl-setup.sh
 source ${CONDOR_DIR_INPUT}/G4beamline-3.06-06102024/G4beamline-3.06/root/bin/thisroot.sh
 
-jobsize=100 #35000
+jobsize=35000
 SUBspillcount=10000
 first=$((${PROCESS}*${jobsize}))
 last=$(( ${first} + $jobsize - 1 ))
@@ -55,7 +55,7 @@ fi
 ls -lrth
 
 chmod 777 sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.root
-chmod 777 /MergeTrees.py
+chmod 777 MergeTrees.py
 
 echo "Running MergeTrees.py"
 MergeTrees.py sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.root --subspillnumber $SUBSPILL --subspillcount $SUBspillcount
