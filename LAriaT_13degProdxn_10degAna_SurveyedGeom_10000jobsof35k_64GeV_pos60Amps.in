@@ -43,7 +43,7 @@ param cosDS=0.998629535 #cos ( 3 deg)
  param Bscale=1.0
  
 #g4ui when=4 “/vis/scene/add/axes 1 2 3 500 mm” 
-g4ui when=4 “/vis/viewer/set/background 1 1 1” 
+g4ui when=4 "/vis/viewer/set/background 1 1 1"
 
 
 #    Beam used to check central momentum of spectrometer ( no target )
