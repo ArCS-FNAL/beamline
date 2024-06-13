@@ -339,8 +339,8 @@ place JGG_field z=57832.7 y=$translatey x=0
 #------------------------- WC 8 -------------------------  
 # extra
 
-  place DetPrime rename=Det8 z=6000000 x=0 y=$translatey 
-  place ChFram          z=6000000 x=0 y=$translatey 
+  #place DetPrime rename=Det8 z=6000000 x=0 y=$translatey 
+  #place ChFram          z=6000000 x=0 y=$translatey 
 
 
 ######### Old code from NovaTB modified
