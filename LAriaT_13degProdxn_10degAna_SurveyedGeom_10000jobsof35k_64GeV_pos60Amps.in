@@ -334,18 +334,18 @@ virtualdetector TOFds width=170 height=170 length=$TOFdsThick material=LUCITE co
 #####################################################################################
 
 #-------------- DS pipe holder (modified to fit current coordinate system) -------------
-param ds_pipe_holder_z=29657.025
-# param ds_pipe_holder_z=46789.4 (LAriat coordinates)
+# param ds_pipe_holder_z=29657.025
+# # param ds_pipe_holder_z=46789.4 (LAriat coordinates)
 
-place H_block z=$ds_pipe_holder_z x=0 y=$floor+0.5*1.5*$feet+2*$feet
+# place H_block z=$ds_pipe_holder_z x=0 y=$floor+0.5*1.5*$feet+2*$feet
 
-place K_block z=$ds_pipe_holder_z+6*$feet-24.5*$inch x=0 y=$floor+0.5*$feet
-place K_block z=$ds_pipe_holder_z+6*$feet-24.5*$inch x=0 y=$floor+1.5*$feet
-place K_block z=$ds_pipe_holder_z-6*$feet+29.5*$inch-0.5*3*$feet x=0 y=$floor+0.5*$feet
-place K_block z=$ds_pipe_holder_z-6*$feet+29.5*$inch-0.5*3*$feet x=0 y=$floor+1.5*$feet
+# place K_block z=$ds_pipe_holder_z+6*$feet-24.5*$inch x=0 y=$floor+0.5*$feet
+# place K_block z=$ds_pipe_holder_z+6*$feet-24.5*$inch x=0 y=$floor+1.5*$feet
+# place K_block z=$ds_pipe_holder_z-6*$feet+29.5*$inch-0.5*3*$feet x=0 y=$floor+0.5*$feet
+# place K_block z=$ds_pipe_holder_z-6*$feet+29.5*$inch-0.5*3*$feet x=0 y=$floor+1.5*$feet
 
-place L_block z=$ds_pipe_holder_z-6*$feet x=0 y=$floor+1.5*$feet+2*$feet+0.5*$feet
-place L_block z=$ds_pipe_holder_z-6*$feet x=0 y=$floor+1.5*$feet+2*$feet+1.5*$feet
+# place L_block z=$ds_pipe_holder_z-6*$feet x=0 y=$floor+1.5*$feet+2*$feet+0.5*$feet
+# place L_block z=$ds_pipe_holder_z-6*$feet x=0 y=$floor+1.5*$feet+2*$feet+1.5*$feet
 
 #------------------------- WC 5 -------------------------  
 #Fake detector in front of JGG
