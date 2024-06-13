@@ -356,7 +356,7 @@ virtualdetector TOFds width=170 height=170 length=$TOFdsThick material=LUCITE co
 #--------------Jolly Green Giant ------------------------
 fieldlines center=0,$translatey,39595.425 radius=10000 nLines=1000 color="0,0,0"
 place JGG z=39595.425 y=$translatey x=0
-place JGG_field z=39595.425 y=$translatey x=0
+# place JGG_field z=39595.425 y=$translatey x=0
 
 #------------------------- WC 6 -------------------------  
 #Fake detector inside the center of JGG
