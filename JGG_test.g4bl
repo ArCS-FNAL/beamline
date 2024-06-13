@@ -9,7 +9,7 @@ param kill_aperture=0
 
 include JGG.in
 #fieldmap JGG_field file="MIPPFieldMapForG4Beamline.txt"
-fieldmap JGG_field filename=test_jgg.b
+fieldmap JGG_field filename=jgg_field_map.txt
 
 place JGG z=0 y=0 x=0
 place JGG_field z=0 y=0 x=0

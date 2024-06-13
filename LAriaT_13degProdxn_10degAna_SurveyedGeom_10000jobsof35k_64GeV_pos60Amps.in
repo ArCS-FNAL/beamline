@@ -283,34 +283,34 @@ virtualdetector TOFds width=170 height=170 length=$TOFdsThick material=LUCITE co
 
 #------------------------------------- LArIAT muon range stack (modified to fit current coordinate system) ----------------------------
 
-param muon_stack_x=-1150
-#suprajab: same as LArIAT TPC
-param muon_stack_startz=9891
-#suprajab: Z location based on very approximate laser pointer measurement, 18 aug 2022
-param muon_stack_y=0.0
-#suprajab: same as downstream TOF, which is the last component that has a y value 
+# param muon_stack_x=-1150
+# #suprajab: same as LArIAT TPC
+# param muon_stack_startz=9891
+# #suprajab: Z location based on very approximate laser pointer measurement, 18 aug 2022
+# param muon_stack_y=0.0
+# #suprajab: same as downstream TOF, which is the last component that has a y value 
 
-place A_block x=$muon_stack_x y=$floor+0.5*1.5*$feet z=10471
-place C_block x=$muon_stack_x y=$floor+1.5*$feet+0.5*3*$feet z=10471-0.5*1.5*$feet
+# place A_block x=$muon_stack_x y=$floor+0.5*1.5*$feet z=10471
+# place C_block x=$muon_stack_x y=$floor+1.5*$feet+0.5*3*$feet z=10471-0.5*1.5*$feet
 
-param steel_gap=30
-box steel_2 height=25.5*$inch width=21*$inch length=20 material=Fe color=0.3,0.0,0.2 kill=$kill_aperture
-box steel_16 height=25.5*$inch width=21*$inch length=160 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
-box steel_8 height=25.5*$inch width=21*$inch length=80 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
-box steel_14 height=25.5*$inch width=21*$inch length=140 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
-box steel_10 height=25.5*$inch width=21*$inch length=100 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
+# param steel_gap=30
+# box steel_2 height=25.5*$inch width=21*$inch length=20 material=Fe color=0.3,0.0,0.2 kill=$kill_aperture
+# box steel_16 height=25.5*$inch width=21*$inch length=160 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
+# box steel_8 height=25.5*$inch width=21*$inch length=80 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
+# box steel_14 height=25.5*$inch width=21*$inch length=140 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
+# box steel_10 height=25.5*$inch width=21*$inch length=100 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
 
-place steel_2 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+0.5*20
-place steel_2 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+3*0.5*20+$steel_gap
-place steel_16 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+2*$steel_gap+0.5*160
-place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+3*$steel_gap+2*0.5*160+0.5*80
-place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+4*$steel_gap+2*0.5*160+3*0.5*80
-place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+5*$steel_gap+2*0.5*160+5*0.5*80
-place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+6*$steel_gap+2*0.5*160+7*0.5*80
-place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+7*$steel_gap+2*0.5*160+9*0.5*80
-place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+8*$steel_gap+2*0.5*160+11*0.5*80
-place steel_14 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+9*$steel_gap+2*0.5*160+12*0.5*80+0.5*140
-place steel_10 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+10*$steel_gap+2*0.5*160+12*0.5*80+2*0.5*140+0.5*10
+# place steel_2 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+0.5*20
+# place steel_2 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+3*0.5*20+$steel_gap
+# place steel_16 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+2*$steel_gap+0.5*160
+# place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+3*$steel_gap+2*0.5*160+0.5*80
+# place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+4*$steel_gap+2*0.5*160+3*0.5*80
+# place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+5*$steel_gap+2*0.5*160+5*0.5*80
+# place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+6*$steel_gap+2*0.5*160+7*0.5*80
+# place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+7*$steel_gap+2*0.5*160+9*0.5*80
+# place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+8*$steel_gap+2*0.5*160+11*0.5*80
+# place steel_14 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+9*$steel_gap+2*0.5*160+12*0.5*80+0.5*140
+# place steel_10 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+10*$steel_gap+2*0.5*160+12*0.5*80+2*0.5*140+0.5*10
 
 
 #------------------------------------ Punch paddles? -------------------------  
