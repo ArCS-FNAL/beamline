@@ -354,8 +354,8 @@ place L_block z=$ds_pipe_holder_z-6*$feet x=0 y=$floor+1.5*$feet+2*$feet+1.5*$fe
   place ChFram          z=39595.425 x=0.0 y=$translatey 
 
 #--------------Jolly Green Giant ------------------------
-place JGG z=57832.7 y=$translatey x=0
-place JGG_field z=57832.7 y=$translatey x=0
+place JGG z=39595.425 y=$translatey x=0
+place JGG_field z=39595.425 y=$translatey x=0
 
 #------------------------- WC 6 -------------------------  
 #Fake detector inside the center of JGG
