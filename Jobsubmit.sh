@@ -1,5 +1,5 @@
 bookdir=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
-n_jobs=10
+n_jobs=10000
 
 source /cvmfs/fermilab.opensciencegrid.org/products/common/etc/setups.sh
 setup ifdhc
@@ -9,7 +9,7 @@ cp -f $PWD/LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Am
 cp -f ${PWD}/JGG.in ${bookdir}
 cp -f ${PWD}/jgg_field_map.txt ${bookdir}
 
-jobsub_submit --debug -G lariat --memory=500MB --expected-lifetime=20h -N ${n_jobs} \
+jobsub_submit --debug -G lariat --memory=500MB --expected-lifetime=23h -N ${n_jobs} \
     -l '+SingularityImage=\"/cvmfs/singularity.opensciencegrid.org/fermilab/fnal-wn-sl7:latest\"' \
     --append_condor_requirements='(TARGET.HAS_SINGULARITY=?=true)' \
     --resource-provides=usage_model=DEDICATED,OPPORTUNISTIC,OFFSITE \
