@@ -21,22 +21,22 @@ cp -f ${PWD}/jgg_field_map.txt ${BOOKDIR}
 cp -f ${PWD}/MergeTrees.py ${BOOKDIR}
 
 jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
-    -l '+SingularityImage=\"/cvmfs/singularity.opensciencegrid.org/fermilab/fnal-wn-sl7:latest\"' \
-    --append_condor_requirements='(TARGET.HAS_SINGULARITY=?=true)' \
-    --resource-provides=usage_model=DEDICATED,OPPORTUNISTIC,OFFSITE \
-    --tar_file_name dropbox:///pnfs/lariat/persistent/users/mdeltutt/G4beamline/G4beamline-3.06-06102024.tar \
-    -f ${BOOKDIR}/MergeTrees.py \
-    -f ${BOOKDIR}/LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.in \
-    -f ${BOOKDIR}/JGG.in \
-    -f ${BOOKDIR}/jgg_field_map.txt \
-    --use-cvmfs-dropbox \
-    -e OUTDIR \
-    -e JOBSIZE \
-    -e BFIELD \
-    -e BSCALE \
-    --mail_always \
-#    --debug \
-    file://$PWD/Script.sh
+-l '+SingularityImage=\"/cvmfs/singularity.opensciencegrid.org/fermilab/fnal-wn-sl7:latest\"' \
+--append_condor_requirements='(TARGET.HAS_SINGULARITY=?=true)' \
+--resource-provides=usage_model=DEDICATED,OPPORTUNISTIC,OFFSITE \
+--tar_file_name dropbox:///pnfs/lariat/persistent/users/mdeltutt/G4beamline/G4beamline-3.06-06102024.tar \
+-f ${BOOKDIR}/MergeTrees.py \
+-f ${BOOKDIR}/LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.in \
+-f ${BOOKDIR}/JGG.in \
+-f ${BOOKDIR}/jgg_field_map.txt \
+--use-cvmfs-dropbox \
+-e OUTDIR \
+-e JOBSIZE \
+-e BFIELD \
+-e BSCALE \
+--mail_always \
+--debug
+file://$PWD/Script.sh
 
 
 # Also copy the file to a config directory for bookkeping
