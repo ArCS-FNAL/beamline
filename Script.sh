@@ -16,7 +16,7 @@ setup g4surface v2_1_1
 source ${CONDOR_DIR_INPUT}/G4beamline-3.06-06102024/G4beamline-3.06/bin/g4bl-setup.sh
 source ${CONDOR_DIR_INPUT}/G4beamline-3.06-06102024/G4beamline-3.06/root/bin/thisroot.sh
 
-jobsize=35000
+jobsize=$JOBSIZE
 SUBspillcount=10000
 first=$((${PROCESS}*${jobsize}))
 last=$(( ${first} + $jobsize - 1 ))
@@ -57,17 +57,17 @@ if [[ $? -ne 0 ]]; then
 fi
 ls -lrth
 
-chmod 777 sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.root
+chmod 777 sim_arcs_beamline.root
 chmod 777 MergeTrees.py
 
 echo "Running MergeTrees.py"
-MergeTrees.py sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.root --subspillnumber $SUBSPILL --subspillcount $SUBspillcount
+MergeTrees.py sim_arcs_beamline.root --subspillnumber $SUBSPILL --subspillcount $SUBspillcount
 if [[ $? -ne 0 ]]; then
    echo "Running MergeTrees.py failed"
    exit 1
 fi
-chmod 777 MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.root
-chmod 777 MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.pickle
+chmod 777 MergedAtStartLinesim_arcs_beamline.root
+chmod 777 MergedAtStartLinesim_arcs_beamline.pickle
 ls -lrth
 
 REALUSER=`basename ${X509_USER_PROXY} .proxy | grep -o -P '(?<=_).*(?=_)'`
@@ -75,21 +75,24 @@ echo '$USER: ' $USER
 echo '$REALUSER: ' $REALUSER
 echo 'Copying files to ', $OUTDIR
 
-ifdh cp sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.root ${OUTDIR}/sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_$SUBSPILL.root
+ifdh mkdir ${OUTDIR}/files/
+
+ifdh cp sim_arcs_beamline.root ${OUTDIR}/files/sim_arcs_beamline_$SUBSPILL.root
 if [[ $? -ne 0 ]]; then
    echo "Copying of the g4bl output ROOT file failed"
    exit 1
 fi
-ifdh cp MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.root ${OUTDIR}/MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_$SUBSPILL.root
+ifdh cp MergedAtStartLinesim_arcs_beamline.root ${OUTDIR}/files/MergedAtStartLinesim_arcs_beamline_$SUBSPILL.root
 if [[ $? -ne 0 ]]; then
    echo "Copying of the output ROOT file failed"
    exit 1
 fi
-ifdh cp MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.pickle ${OUTDIR}/MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_$SUBSPILL.pickle
+ifdh cp MergedAtStartLinesim_arcs_beamline.pickle ${OUTDIR}/files/MergedAtStartLinesim_arcs_beamline_$SUBSPILL.pickle
 if [[ $? -ne 0 ]]; then
    echo "Copying of the output pickle file failed"
    exit 1
 fi
+
 ls -lrth
 echo $CONDOR_DIR_INPUT
 
