@@ -35,8 +35,7 @@ jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
 -e BFIELD \
 -e BSCALE \
 --mail_always \
---debug
-file://$PWD/Script.sh
+--debug file://$PWD/Script.sh
 
 
 # Also copy the file to a config directory for bookkeping
