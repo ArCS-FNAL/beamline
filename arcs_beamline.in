@@ -7,6 +7,8 @@
 
 # position corrections made on May 24, 2023 based on latest diagrams from TOAD at FTBF (from Evan Niner): Supraja Balasubramanian
 # May 26, 2023: put the y coordinate of the beamline as $translatey, i.e. the same height as the center of the JGG
+#
+# originally from "LAriaT_13degProdxn_10degAna_SurveyedGeom.in"
 #______________________________________________________________________
 
 
