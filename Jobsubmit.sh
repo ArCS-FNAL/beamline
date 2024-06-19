@@ -2,10 +2,10 @@ BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
 OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/test/
 
 # Number of jobs to submit
-NJOBS=10000
+NJOBS=2 # 10000
 
 # Number of pions on target per job
-JOBSIZE=35000
+JOBSIZE=10 # 35000
 
 # Bending magnets fields
 BFIELD=-0.2121 # 60 Amps
