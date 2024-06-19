@@ -1,17 +1,17 @@
-BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
-OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/test/
+export BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
+export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/test/
 
 # Number of jobs to submit
-NJOBS=2 # 10000
+export NJOBS=2 # 10000
 
 # Number of pions on target per job
-JOBSIZE=10 # 35000
+export JOBSIZE=10 # 35000
 
 # Bending magnets fields
-BFIELD=-0.2121 # 60 Amps
-# BFIELD=-0.3361 # 100 Amps
-BSCALE=+1 # pos
-#BSCALE=-1 # neg
+export BFIELD=-0.2121 # 60 Amps
+# export BFIELD=-0.3361 # 100 Amps
+export BSCALE=+1 # pos
+# export BSCALE=-1 # neg
 
 mkdir -p ${OUTDIR}
 
