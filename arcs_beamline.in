@@ -41,8 +41,10 @@ param cosDS=0.998629535 #cos ( 3 deg)
 
 
  
-#   Use Bscale to change fields.  +1 is nominal, and maximum value ( 100 A on NDBs >> 1.0)
- param Bscale=1.0
+#   Use BSCALE to change fields.  +1 is nominal, and maximum value ( 100 A on NDBs >> 1.0)
+# Passed as argument
+# param BSCALE=1.0
+# param BFIELD=-0.2121
  
 #g4ui when=4 “/vis/scene/add/axes 1 2 3 500 mm” 
 g4ui when=4 "/vis/viewer/set/background 1 1 1"
@@ -196,12 +198,12 @@ group ChFram
  genericbend NDB fieldWidth=305.9 fieldHeight=140.4 fieldLength=571.85 kill=$killshld \
 	ironColor=1,0,0 ironWidth=533.4 ironHeight=474.675 ironLength=466.725
 	
-param B1=-0.2121*$Bscale
+param B1=$BFIELD*$BSCALE
 param B1z=3889.924
 
 # param B1z=3801.00 (LAriat coordinates)
 
-param B2=-0.2121*$Bscale
+param B2=$BFIELD*$BSCALE
 param B2z=4567.265
 
 # param B2z=4491.00 (LAriat coordinates)
