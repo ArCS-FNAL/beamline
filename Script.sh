@@ -24,6 +24,9 @@ echo "PROCESS is: $PROCESS"
 echo "jobsize is: $jobsize" 
 echo "first = $first"
 echo "last = $last"
+echo "OUTDIR = $OUTDIR"
+echo "BFIELD = $BFIELD"
+echo "BSCALE = $BSCALE"
 SUBSPILL=$((${PROCESS}+1 ))
 
 echo
@@ -47,7 +50,7 @@ ls -lh ${CONDOR_DIR_INPUT}
 echo 
 
 echo "Running g4bl"
-g4bl LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.in first=$first last=$last
+g4bl arcs_beamline.in first=$first last=$last BFIELD=$BFIELD BSCALE=$BSCALE
 if [[ $? -ne 0 ]]; then
    echo "The g4bl command failed"
    exit 1
@@ -70,18 +73,19 @@ ls -lrth
 REALUSER=`basename ${X509_USER_PROXY} .proxy | grep -o -P '(?<=_).*(?=_)'`
 echo '$USER: ' $USER
 echo '$REALUSER: ' $REALUSER
+echo 'Copying files to ', $OUTDIR
 
-ifdh cp sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.root /pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_$SUBSPILL.root
+ifdh cp sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.root ${OUTDIR}/sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_$SUBSPILL.root
 if [[ $? -ne 0 ]]; then
    echo "Copying of the g4bl output ROOT file failed"
    exit 1
 fi
-ifdh cp MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.root /pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_$SUBSPILL.root
+ifdh cp MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.root ${OUTDIR}/MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_$SUBSPILL.root
 if [[ $? -ne 0 ]]; then
    echo "Copying of the output ROOT file failed"
    exit 1
 fi
-ifdh cp MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.pickle /pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_$SUBSPILL.pickle
+ifdh cp MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.pickle ${OUTDIR}/MergedAtStartLinesim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_$SUBSPILL.pickle
 if [[ $? -ne 0 ]]; then
    echo "Copying of the output pickle file failed"
    exit 1
