@@ -77,24 +77,30 @@ echo 'Copying files to ', $OUTDIR
 
 ifdh mkdir ${OUTDIR}/files/
 
-ifdh cp ${OUTFILE}.root ${OUTDIR}/files/sim_arcs_beamline_$SUBSPILL.root
+ifdh cp ${OUTFILE}.root ${OUTDIR}/files/${OUTFILE}_$SUBSPILL.root
 if [[ $? -ne 0 ]]; then
    echo "Copying of the g4bl output ROOT file failed"
    exit 1
 fi
-ifdh cp MergedAtStartLine${OUTFILE}.root ${OUTDIR}/files/MergedAtStartLinesim_arcs_beamline_$SUBSPILL.root
+ifdh cp MergedAtStartLine${OUTFILE}.root ${OUTDIR}/files/MergedAtStartLine${OUTFILE}_$SUBSPILL.root
 if [[ $? -ne 0 ]]; then
    echo "Copying of the output ROOT file failed"
    exit 1
 fi
-ifdh cp MergedAtStartLine${OUTFILE}.pickle ${OUTDIR}/files/MergedAtStartLinesim_arcs_beamline_$SUBSPILL.pickle
+ifdh cp MergedAtStartLine${OUTFILE}.pickle ${OUTDIR}/files/MergedAtStartLine${OUTFILE}_$SUBSPILL.pickle
 if [[ $? -ne 0 ]]; then
    echo "Copying of the output pickle file failed"
    exit 1
 fi
 
-ls -lrth
-echo $CONDOR_DIR_INPUT
+# Make skimmed trees
+setup python v3_9_15
+pip install uproot --user
 
-#touch MyFile
-#ifdh cp MyFile 
+python make_skimmed_trees.py MergedAtStartLine${OUTFILE}.root
+
+ifdh cp MergedAtStartLine${OUTFILE}_skimmed.root ${OUTDIR}/files/MergedAtStartLine${OUTFILE}_skimmed_$SUBSPILL.root
+if [[ $? -ne 0 ]]; then
+   echo "Copying of the output ROOT file failed"
+   exit 1
+fi
