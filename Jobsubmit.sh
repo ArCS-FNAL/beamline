@@ -26,7 +26,7 @@ jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
 --resource-provides=usage_model=DEDICATED,OPPORTUNISTIC,OFFSITE \
 --tar_file_name dropbox:///pnfs/lariat/persistent/users/mdeltutt/G4beamline/G4beamline-3.06-06102024.tar \
 -f ${BOOKDIR}/MergeTrees.py \
--f ${BOOKDIR}/LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps.in \
+-f ${BOOKDIR}/arcs_beamline.in \
 -f ${BOOKDIR}/JGG.in \
 -f ${BOOKDIR}/jgg_field_map.txt \
 --use-cvmfs-dropbox \
