@@ -49,25 +49,25 @@ echo ${CONDOR_DIR_INPUT}
 ls -lh ${CONDOR_DIR_INPUT}
 echo 
 
-echo "Running g4bl"
-g4bl arcs_beamline.in first=$first last=$last BFIELD=$BFIELD BSCALE=$BSCALE
+echo "Running g4bl with input file $G4BNBINPUT"
+g4bl $G4BNBINPUT first=$first last=$last BFIELD=$BFIELD BSCALE=$BSCALE
 if [[ $? -ne 0 ]]; then
    echo "The g4bl command failed"
    exit 1
 fi
 ls -lrth
 
-chmod 777 sim_arcs_beamline.root
+chmod 777 ${OUTFILE}.root
 chmod 777 MergeTrees.py
 
 echo "Running MergeTrees.py"
-MergeTrees.py sim_arcs_beamline.root --subspillnumber $SUBSPILL --subspillcount $SUBspillcount
+MergeTrees.py ${OUTFILE}.root --subspillnumber $SUBSPILL --subspillcount $SUBspillcount
 if [[ $? -ne 0 ]]; then
    echo "Running MergeTrees.py failed"
    exit 1
 fi
-chmod 777 MergedAtStartLinesim_arcs_beamline.root
-chmod 777 MergedAtStartLinesim_arcs_beamline.pickle
+chmod 777 MergedAtStartLine${OUTFILE}.root
+chmod 777 MergedAtStartLine${OUTFILE}.pickle
 ls -lrth
 
 REALUSER=`basename ${X509_USER_PROXY} .proxy | grep -o -P '(?<=_).*(?=_)'`
@@ -77,17 +77,17 @@ echo 'Copying files to ', $OUTDIR
 
 ifdh mkdir ${OUTDIR}/files/
 
-ifdh cp sim_arcs_beamline.root ${OUTDIR}/files/sim_arcs_beamline_$SUBSPILL.root
+ifdh cp ${OUTFILE}.root ${OUTDIR}/files/sim_arcs_beamline_$SUBSPILL.root
 if [[ $? -ne 0 ]]; then
    echo "Copying of the g4bl output ROOT file failed"
    exit 1
 fi
-ifdh cp MergedAtStartLinesim_arcs_beamline.root ${OUTDIR}/files/MergedAtStartLinesim_arcs_beamline_$SUBSPILL.root
+ifdh cp MergedAtStartLine${OUTFILE}.root ${OUTDIR}/files/MergedAtStartLinesim_arcs_beamline_$SUBSPILL.root
 if [[ $? -ne 0 ]]; then
    echo "Copying of the output ROOT file failed"
    exit 1
 fi
-ifdh cp MergedAtStartLinesim_arcs_beamline.pickle ${OUTDIR}/files/MergedAtStartLinesim_arcs_beamline_$SUBSPILL.pickle
+ifdh cp MergedAtStartLine${OUTFILE}.pickle ${OUTDIR}/files/MergedAtStartLinesim_arcs_beamline_$SUBSPILL.pickle
 if [[ $? -ne 0 ]]; then
    echo "Copying of the output pickle file failed"
    exit 1

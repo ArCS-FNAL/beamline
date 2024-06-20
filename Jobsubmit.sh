@@ -1,5 +1,8 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
 export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/test/
+# export G4BNBINPUT=arcs_beamline.in
+export G4BNBINPUT=LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_2sept2022.in
+export OUTFILE=sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps
 
 # Number of jobs to submit
 export NJOBS=2 # 10000
@@ -15,7 +18,7 @@ export BSCALE=+1 # pos
 
 mkdir -p ${OUTDIR}
 
-cp -f ${PWD}/arcs_beamline.in ${BOOKDIR}
+cp -f ${PWD}/${G4BNBINPUT} ${BOOKDIR}
 cp -f ${PWD}/JGG.in ${BOOKDIR}
 cp -f ${PWD}/jgg_field_map.txt ${BOOKDIR}
 cp -f ${PWD}/MergeTrees.py ${BOOKDIR}
@@ -32,6 +35,8 @@ jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
 --use-cvmfs-dropbox \
 -e OUTDIR \
 -e JOBSIZE \
+-e G4BNBINPUT \
+-e OUTFILE \
 -e BFIELD \
 -e BSCALE \
 --mail_always \
@@ -40,7 +45,7 @@ jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
 
 # Also copy the file to a config directory for bookkeping
 mkdir -p ${OUTDIR}/config/
-cp -f ${PWD}/arcs_beamline.in ${OUTDIR}/config/
+cp -f ${PWD}/${G4BNBINPUT} ${OUTDIR}/config/
 cp -f ${PWD}/JGG.in ${OUTDIR}/config/
 cp -f ${PWD}/jgg_field_map.txt ${OUTDIR}/config/
 cp -f ${PWD}/MergeTrees.py ${OUTDIR}/config/
