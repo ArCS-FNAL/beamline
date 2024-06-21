@@ -1,0 +1,37 @@
+# Code to simulate the Jolly Green Giant (JGG) dipole magnet in the MC7 Hall at the Fermilab Test Beam Facility.
+# Lengths are in mm, fields in Tesla
+# All JGG dimensions are from the JGG mechanical drawings made by Jim Kilmer in 2007-2008.
+# Author: Supraja Balasubramanian, 18 June 2023
+#______________________________________________________________________
+
+# JGG dimensions
+param JGG_length=106.79*$inch 
+param JGG_height=137.0*$inch 
+param JGG_width=192.0*$inch 
+param JGG_horizontal_aperture=103.25*$inch 
+param JGG_vertical_aperture=48.68*$inch 
+param JGG_coil_assembly_height=10.174*$inch
+param JGG_coil_assembly_width=97.89*$inch
+param JGG_coil_assembly_thickness_x=0.5*36.94*$inch
+param JGG_coil_assembly_thickness_z=0.5*40.04*$inch
+param JGG_side_steel_width=0.5*($JGG_width-$JGG_horizontal_aperture)
+param JGG_top_bottom_steel_height=0.5*($JGG_height-$JGG_vertical_aperture)-$JGG_coil_assembly_height
+param JGG_inside_coil_steel_width=$JGG_coil_assembly_width-2*$JGG_coil_assembly_thickness_x
+param JGG_inside_coil_steel_length=$JGG_length-2*$JGG_coil_assembly_thickness_z
+
+
+group JGG length=$JGG_length material=Air
+      box side_steel width=$JGG_side_steel_width height=$JGG_height length=$JGG_length material=Fe kill=$kill_aperture color=0,0.2,0
+      box top_bottom_steel width=$JGG_horizontal_aperture height=$JGG_top_bottom_steel_height length=$JGG_length material=Fe kill=$kill_aperture color=0,0.2,0
+      box coil_assembly width=$JGG_coil_assembly_width height=$JGG_coil_assembly_height length=$JGG_length material=Al kill=$kill_aperture color=0.6,0.6,0.6
+      box inside_coil_steel width=$JGG_inside_coil_steel_width height=$JGG_coil_assembly_height length=$JGG_inside_coil_steel_length material=Fe kill=$kill_aperture color=0,0.2,0
+
+      place side_steel x=0.5*($JGG_width-$JGG_side_steel_width) y=0 z=0
+      place side_steel x=-0.5*($JGG_width-$JGG_side_steel_width) y=0 z=0
+      place top_bottom_steel x=0 y=0.5*($JGG_height-$JGG_top_bottom_steel_height) z=0
+      place top_bottom_steel x=0 y=-0.5*($JGG_height-$JGG_top_bottom_steel_height) z=0
+      place coil_assembly x=0 y=0.5*$JGG_height-$JGG_top_bottom_steel_height-0.5*$JGG_coil_assembly_height z=0
+      place coil_assembly x=0 y=-(0.5*$JGG_height-$JGG_top_bottom_steel_height-0.5*$JGG_coil_assembly_height) z=0
+      place inside_coil_steel x=0 y=0.5*$JGG_height-$JGG_top_bottom_steel_height-0.5*$JGG_coil_assembly_height z=0
+      place inside_coil_steel x=0 y=-(0.5*$JGG_height-$JGG_top_bottom_steel_height-0.5*$JGG_coil_assembly_height) z=0
+endgroup

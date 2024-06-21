@@ -1,0 +1,28 @@
+
+fieldlines center=0,0,0 radius=10000 nLines=1000 color="0,0,0"
+
+physics QGSP_BIC
+
+param inch=25.4
+param feet=304.8
+param kill_aperture=0
+
+include JGG.in
+#fieldmap JGG_field file="MIPPFieldMapForG4Beamline.txt"
+fieldmap JGG_field filename=test_jgg.b
+
+place JGG z=0 y=0 x=0
+place JGG_field z=0 y=0 x=0
+
+
+#coil C innerRadius=100 outerRadius=120 length=100
+#solenoid S coil=C current=100 color=1,0,0,0.3
+#place S z=1000
+
+box Vis height=100 width=100 length=100 color=1,1,1,0.2
+place Vis x=-1270.0 y=-558.8 z=-2032.0
+
+beam gaussian particle=pi+ firstEvent=0 lastEvent=10 sigmaX=0 sigmaY=0 beamZ=-2000.0 \
+   meanMomentum=500
+
+g4ui when=4 "/vis/viewer/set/background 1 1 1"

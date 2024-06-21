@@ -1,0 +1,13 @@
+physics QGSP doStochastics=0
+beam gaussian
+fieldlines center=0,0,0 radius=1500 nLines=1000
+
+#fieldmap Field filename=test_map.txt
+fieldmap Field filename=test_jgg.b
+place Field z=0
+
+#printfield type=print field=By layout=tz drow=0.2 dcol=5 \
+#		nrow=150 ncol=4 t=-15 exit=1
+
+box Vis height=1500 width=1500 length=1500 color=1,1,1,0.2
+place Vis x=0 y=0 z=0
