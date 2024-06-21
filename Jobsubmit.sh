@@ -33,6 +33,7 @@ jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
 -f ${BOOKDIR}/JGG.in \
 -f ${BOOKDIR}/jgg_field_map.txt \
 -f ${BOOKDIR}/MergeTrees.py \
+-f ${BOOKDIR}/make_skimmed_trees.py \
 --use-cvmfs-dropbox \
 -e OUTDIR \
 -e JOBSIZE \
