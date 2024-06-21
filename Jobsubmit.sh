@@ -22,16 +22,17 @@ cp -f ${PWD}/${G4BNBINPUT} ${BOOKDIR}
 cp -f ${PWD}/JGG.in ${BOOKDIR}
 cp -f ${PWD}/jgg_field_map.txt ${BOOKDIR}
 cp -f ${PWD}/MergeTrees.py ${BOOKDIR}
+cp -f ${PWD}/make_skimmed_trees.py ${BOOKDIR}
 
 jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
 -l '+SingularityImage=\"/cvmfs/singularity.opensciencegrid.org/fermilab/fnal-wn-sl7:latest\"' \
 --append_condor_requirements='(TARGET.HAS_SINGULARITY=?=true)' \
 --resource-provides=usage_model=DEDICATED,OPPORTUNISTIC,OFFSITE \
 --tar_file_name dropbox:///pnfs/lariat/persistent/users/mdeltutt/G4beamline/G4beamline-3.06-06102024.tar \
--f ${BOOKDIR}/MergeTrees.py \
--f ${BOOKDIR}/arcs_beamline.in \
+-f ${BOOKDIR}/$G4BNBINPUT \
 -f ${BOOKDIR}/JGG.in \
 -f ${BOOKDIR}/jgg_field_map.txt \
+-f ${BOOKDIR}/MergeTrees.py \
 --use-cvmfs-dropbox \
 -e OUTDIR \
 -e JOBSIZE \
@@ -49,5 +50,6 @@ cp -f ${PWD}/${G4BNBINPUT} ${OUTDIR}/config/
 cp -f ${PWD}/JGG.in ${OUTDIR}/config/
 cp -f ${PWD}/jgg_field_map.txt ${OUTDIR}/config/
 cp -f ${PWD}/MergeTrees.py ${OUTDIR}/config/
+cp -f ${PWD}/make_skimmed_trees.py ${OUTDIR}/config/
 cp -f ${PWD}/Script.sh ${OUTDIR}/config/
 cp -f ${PWD}/Jobsubmit.sh ${OUTDIR}/config/
