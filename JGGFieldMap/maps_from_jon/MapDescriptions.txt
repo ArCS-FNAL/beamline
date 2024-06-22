@@ -1,0 +1,50 @@
+These fieldmaps contain the magnetic fields for JGG and Rosie.
+
+JGGfield.dat:
+The Ziptrack measurement of the JGG field. This was done before any
+coils broke.
+
+JGGfieldZipN.dat:
+These are the JGG ziptrack map scaled by the ratio of the maps from
+JGGfieldN to JGGfieldA from Bob Wands' models.
+(JGGfieldZipA.dat would be identical to JGGfield.dat.)
+If these rescaled maps turn out to be useful, they will have to be updated
+every time JGGfield.dat is updated.
+
+JGGfieldA.dat to JGGfieldD.dat:
+These maps are from models that Bob Wands ran.
+Period A : Winter 2002-2003, Ziptracking was done
+           No MIPP data runs
+Period B : After 27 May'04 coil shorts, including first MIPP physics data
+           MIPP runs 0 to 13424
+Period C : After 21 Mar'05 coil shorts, including most MIPP physics data
+           MIPP runs 13425 to 17264
+Period D : After 13 Jan'06 to 10 Feb'06, MIPP physics data was taken
+           MIPP runs 17265 to 17677
+These maps have been moved to the CVS attic on 19-mar-2007 because they
+are not useful for MIPP data reconstruction/analysis.
+
+Rosiefield.dat:
+The latest greatest Rosie fieldmap from Ziptrack with Raja's rotation
+in one corner.
+
+JGGfieldext9.dat and JGGfieldext18.dat:
+These are maps for proposed new coils to replace the failed JGG coils.
+For better field uniformity the coils in these models are extended
+by 9 inches and 18 inches along the beam direction. This produces more
+uniform fields in the TPC region. DO NOT USE THESE MAPS TO ANALYSE DATA
+TAKEN IN MIPP RUN BEFORE MARCH 2006!
+
+
+-----------------------------------------------------------------------
+Currents in JGG were changing with coils failing. JGG currents were as
+follows:
+Period   Total Current   Current Top   Current Bottom
+  A        1373 A            687 A         687 A
+  B        1435 A            643 A         791 A
+  C        1579 A            643 A         936 A
+  D        1625 A            644 A         981 A
+Total Current: Numbers are readback (actual) current from Acnet. Set
+currents were 1400 A, 1450 A, 1600 A, and 1645 A for periods A to D
+respectively.
+
