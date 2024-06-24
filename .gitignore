@@ -2,4 +2,5 @@ g4bl.out
 *.root
 .ipynb*
 *-env
+.DS_Store
 
