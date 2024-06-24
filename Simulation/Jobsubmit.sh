@@ -1,14 +1,14 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
-export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/test/
+export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/21june2024/
 # export G4BNBINPUT=arcs_beamline.in
 export G4BNBINPUT=LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_22aug2022.in
 export OUTFILE=sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps
 
 # Number of jobs to submit
-export NJOBS=2 # 10000
+export NJOBS=10000
 
 # Number of pions on target per job
-export JOBSIZE=10 # 35000
+export JOBSIZE=35000
 
 # Bending magnets fields
 export BFIELD=-0.2121 # 60 Amps

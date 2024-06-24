@@ -3,4 +3,5 @@ g4bl.out
 .ipynb*
 *-env
 .DS_Store
-
+*.pdf
+*.png
