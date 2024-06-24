@@ -1,6 +1,0 @@
-jupyterlab
-numpy
-matplotlib
-uproot
-urllib3==1.26.6
-
