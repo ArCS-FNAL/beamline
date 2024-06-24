@@ -1,5 +1,5 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
-export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/21june2024/
+export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/22jun2024/
 # export G4BNBINPUT=arcs_beamline.in
 export G4BNBINPUT=LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_22aug2022.in
 export OUTFILE=sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps
@@ -41,7 +41,6 @@ jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
 -e OUTFILE \
 -e BFIELD \
 -e BSCALE \
---mail_always \
 --debug file://$PWD/Script.sh
 
 
