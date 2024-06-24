@@ -16,8 +16,8 @@ export BFIELD=-0.2121 # 60 Amps
 export BSCALE=+1 # pos
 # export BSCALE=-1 # neg
 
+# Copy all neded files to a folder on resilient
 mkdir -p ${OUTDIR}
-
 cp -f ${PWD}/inputs/${G4BNBINPUT} ${BOOKDIR}
 cp -f ${PWD}/inputs/JGG.in ${BOOKDIR}
 cp -f ${PWD}/inputs/jgg_field_map.txt ${BOOKDIR}
