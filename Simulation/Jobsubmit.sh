@@ -1,14 +1,14 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
 export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/21june2024/
 # export G4BNBINPUT=arcs_beamline.in
-export G4BNBINPUT=LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps_22aug2022.in
+export G4BNBINPUT=arcs_beamline_2sep2024.in
 export OUTFILE=sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps
 
 # Number of jobs to submit
-export NJOBS=10000
+export NJOBS=2 #10000
 
 # Number of pions on target per job
-export JOBSIZE=35000
+export JOBSIZE=100 #35000
 
 # Bending magnets fields
 export BFIELD=-0.2121 # 60 Amps
@@ -18,9 +18,9 @@ export BSCALE=+1 # pos
 
 mkdir -p ${OUTDIR}
 
-cp -f ${PWD}/${G4BNBINPUT} ${BOOKDIR}
-cp -f ${PWD}/JGG.in ${BOOKDIR}
-cp -f ${PWD}/jgg_field_map.txt ${BOOKDIR}
+cp -f ${PWD}/inputs/${G4BNBINPUT} ${BOOKDIR}
+cp -f ${PWD}/inputs/JGG.in ${BOOKDIR}
+cp -f ${PWD}/inputs/jgg_field_map.txt ${BOOKDIR}
 cp -f ${PWD}/MergeTrees.py ${BOOKDIR}
 cp -f ${PWD}/make_skimmed_trees.py ${BOOKDIR}
 
@@ -47,9 +47,9 @@ jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
 
 # Also copy the file to a config directory for bookkeping
 mkdir -p ${OUTDIR}/config/
-cp -f ${PWD}/${G4BNBINPUT} ${OUTDIR}/config/
-cp -f ${PWD}/JGG.in ${OUTDIR}/config/
-cp -f ${PWD}/jgg_field_map.txt ${OUTDIR}/config/
+cp -f ${PWD}/inputs/${G4BNBINPUT} ${OUTDIR}/config/
+cp -f ${PWD}/inputs/JGG.in ${OUTDIR}/config/
+cp -f ${PWD}/inputs/jgg_field_map.txt ${OUTDIR}/config/
 cp -f ${PWD}/MergeTrees.py ${OUTDIR}/config/
 cp -f ${PWD}/make_skimmed_trees.py ${OUTDIR}/config/
 cp -f ${PWD}/Script.sh ${OUTDIR}/config/
