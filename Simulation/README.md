@@ -1,5 +1,11 @@
 # G4Beamline Simulation
 
+To submit jobs to the grid, modify `Jobsubmit.sh` appropriately, then:
+```
+source setup.sh
+source Jobsubmit.sh
+```
+
 G4Beamline input files are in `inputs/`. Description:
 
 | G4 Input File  | Description |
