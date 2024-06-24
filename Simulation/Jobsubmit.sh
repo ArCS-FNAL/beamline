@@ -1,7 +1,7 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
 export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/22jun2024/
 # export G4BNBINPUT=arcs_beamline.in
-export G4BNBINPUT=arcs_beamline_2sep2024.in
+export G4BNBINPUT=arcs_beamline_2sep2022.in
 export OUTFILE=sim_LAriaT_13degProdxn_10degAna_SurveyedGeom_10000jobsof35k_64GeV_pos60Amps
 
 # Number of jobs to submit
