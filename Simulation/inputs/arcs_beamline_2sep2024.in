@@ -31,8 +31,8 @@ param kill_aperture=0
 #   Use Bscale to change fields.  +1 is nominal, and maximum value ( 100 A on NDBs >> 1.0)
  param Bscale=1.0
  
-#g4ui when=4 “/vis/scene/add/axes 1 2 3 500 mm” 
-g4ui when=4 “/vis/viewer/set/background 1 1 1” 
+#g4ui when=4 "/vis/scene/add/axes 1 2 3 500 mm"
+g4ui when=4 "/vis/viewer/set/background 1 1 1"
 
 
 #    Beam used to check central momentum of spectrometer ( no target )
@@ -156,6 +156,7 @@ group ChFram
 #  Fermilab TM-1179      2557.000     Feb 1983
 
   virtualdetector Det  width=128.0  height=125.0 color=0,1,0  length=25.0
+  virtualdetector DetPrime width=470.0  height=400.0 color=0,1,0 length=25.0
 
   place Det rename=Det1   z=1730.3369 x=-403.0472 y=0.0508 rotation=y-13
   place ChFram            z=1730.3369 x=-403.0472 y=0.0508 rotation=y-13
@@ -259,13 +260,16 @@ virtualdetector TOFds width=170 height=170 length=$TOFdsThick material=LUCITE co
 ########################## PAST LARIAT ORIGINAL LOCATION ############################
 #####################################################################################
 
-#From on, z positions are very approximate.
+#From here on, z positions are very approximate.
 
 #------------------------- WC 5 -------------------------  
 #Fake detector between lariat TPC and MuRS
       
-  place Det rename=Det5 z=9416 x=-1150 y=0.0 rotation=y3
-  place ChFram          z=9416 x=-1150 y=0.0 rotation=y3
+  #place Det rename=Det5 z=9416 x=-1150 y=0.0 rotation=y3
+  #place ChFram          z=9416 x=-1150 y=0.0 rotation=y3
+
+  place DetPrime rename=Det5 z=9416 x=-1150 y=0.0 
+  place ChFram          z=9416 x=-1150 y=0.0 
 
 #------------------------------------- LArIAT muon range stack (modified to fit current coordinate system) ----------------------------
 
@@ -301,8 +305,11 @@ place steel_10 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+10*
 #------------------------- WC 6 -------------------------  
 # place after MuRS
 
-  place Det rename=Det6 z=11300 x=$muon_stack_x y=$muon_stack_y rotation=y3
-  place ChFram          z=11300 x=$muon_stack_x y=$muon_stack_y rotation=y3
+  #place Det rename=Det6 z=11300 x=$muon_stack_x y=$muon_stack_y rotation=y3
+  #place ChFram          z=11300 x=$muon_stack_x y=$muon_stack_y rotation=y3
+
+  place DetPrime rename=Det6 z=11300 x=$muon_stack_x y=$muon_stack_y 
+  place ChFram          z=11300 x=$muon_stack_x y=$muon_stack_y 
 
 
 #-------------- DS pipe holder (modified to fit current coordinate system) -------------
@@ -322,8 +329,11 @@ place L_block z=$ds_pipe_holder_z-6*$feet x=0 y=$floor+1.5*$feet+2*$feet+1.5*$fe
 #------------------------- WC 7 -------------------------  
 # place in front of JGG
 
-  place Det rename=Det7 z=56700 x=0 y=$translatey rotation=y3
-  place ChFram          z=56700 x=0 y=$translatey rotation=y3
+  #place Det rename=Det7 z=56700 x=0 y=$translatey rotation=y3
+  #place ChFram          z=56700 x=0 y=$translatey rotation=y3
+
+  place DetPrime rename=Det7 z=56700 x=0 y=$translatey 
+  place ChFram          z=56700 x=0 y=$translatey 
 
 
 #--------------JGG (modified to fit current coordinate system) ------------------------
@@ -350,8 +360,11 @@ place JGG_v_steel x=-0.5*($JGG_hap+$JGG_steel_width) y=$JGG_y z=$JGG_z
 #------------------------- WC 8 -------------------------  
 # place inside of JGG
 
-  place Det rename=Det8 z=57832.7 x=0 y=$translatey rotation=y3
-  place ChFram          z=57832.7 x=0 y=$translatey rotation=y3
+  #place Det rename=Det8 z=57832.7 x=0 y=$translatey rotation=y3
+  #place ChFram          z=57832.7 x=0 y=$translatey rotation=y3
+
+  place DetPrime rename=Det8 z=57832.7 x=0 y=$translatey 
+  place ChFram          z=57832.7 x=0 y=$translatey 
 
 #-------------------------------------#-------------------------------------#-------------------------------------
 #-------------------------------------#-------------------------------------#-------------------------------------

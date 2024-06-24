@@ -1,6 +1,6 @@
-# beamline
+# ArCS Beamline Simulation
 
 
-python -m venv analysis-env
-source analysis-env/bin/activate
-
+- `Simulation`: G4Beamline simulation
+- `Analysis`: Code to analyze simulation outputs
+- `JGGFieldMap`: Jolly Green Giant magnet field maps
