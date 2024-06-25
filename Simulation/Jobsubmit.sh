@@ -8,7 +8,7 @@ export OUTFILE=sim_arcs_beamline
 export NJOBS=2 #10000
 
 # Number of pions on target per job
-export JOBSIZE=100 #35000
+export JOBSIZE=100 #30000
 
 # Bending magnets fields
 export BFIELD=-0.2121 # 60 Amps
