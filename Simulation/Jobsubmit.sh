@@ -1,14 +1,14 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
-export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/config03/
+export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/config04/
 # export G4BNBINPUT=arcs_beamline.in
 export G4BNBINPUT=arcs_beamline_config04.in
 export OUTFILE=sim_arcs_beamline
 
 # Number of jobs to submit
-export NJOBS=2 #10000
+export NJOBS=10000
 
 # Number of pions on target per job
-export JOBSIZE=100 #30000
+export JOBSIZE=30000
 
 # Bending magnets fields
 export BFIELD=-0.2121 # 60 Amps
