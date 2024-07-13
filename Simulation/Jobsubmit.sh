@@ -1,7 +1,7 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
-export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/config04/
+export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/config05_2/
 # export G4BNBINPUT=arcs_beamline.in
-export G4BNBINPUT=arcs_beamline_config04.in
+export G4BNBINPUT=arcs_beamline_config05.in
 export OUTFILE=sim_arcs_beamline
 
 # Number of jobs to submit
@@ -23,6 +23,7 @@ cp -f ${PWD}/inputs/JGG.in ${BOOKDIR}
 cp -f ${PWD}/inputs/jgg_field_map.txt ${BOOKDIR}
 cp -f ${PWD}/MergeTrees.py ${BOOKDIR}
 cp -f ${PWD}/make_skimmed_trees.py ${BOOKDIR}
+cp -f ${PWD}/make_g4bl_simple_trees.py ${BOOKDIR}
 
 jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
 -l '+SingularityImage=\"/cvmfs/singularity.opensciencegrid.org/fermilab/fnal-wn-sl7:latest\"' \
@@ -34,6 +35,7 @@ jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
 -f ${BOOKDIR}/jgg_field_map.txt \
 -f ${BOOKDIR}/MergeTrees.py \
 -f ${BOOKDIR}/make_skimmed_trees.py \
+-f ${BOOKDIR}/make_g4bl_simple_trees.py \
 --use-cvmfs-dropbox \
 -e OUTDIR \
 -e JOBSIZE \
@@ -51,5 +53,6 @@ cp -f ${PWD}/inputs/JGG.in ${OUTDIR}/config/
 cp -f ${PWD}/inputs/jgg_field_map.txt ${OUTDIR}/config/
 cp -f ${PWD}/MergeTrees.py ${OUTDIR}/config/
 cp -f ${PWD}/make_skimmed_trees.py ${OUTDIR}/config/
+cp -f ${PWD}/make_g4bl_simple_trees.py ${OUTDIR}/config/
 cp -f ${PWD}/Script.sh ${OUTDIR}/config/
 cp -f ${PWD}/Jobsubmit.sh ${OUTDIR}/config/

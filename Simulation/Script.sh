@@ -98,8 +98,15 @@ setup python v3_9_15
 pip install uproot --user
 
 python make_skimmed_trees.py MergedAtStartLine${OUTFILE}.root
+python make_g4bl_simple_trees.py ${OUTFILE}.root
 
 ifdh cp MergedAtStartLine${OUTFILE}_skimmed.root ${OUTDIR}/files/MergedAtStartLine${OUTFILE}_skimmed_$SUBSPILL.root
+if [[ $? -ne 0 ]]; then
+   echo "Copying of the output ROOT file failed"
+   exit 1
+fi
+
+ifdh cp ${OUTFILE}_simple.root ${OUTDIR}/files/${OUTFILE}_simple_$SUBSPILL.root
 if [[ $? -ne 0 ]]; then
    echo "Copying of the output ROOT file failed"
    exit 1

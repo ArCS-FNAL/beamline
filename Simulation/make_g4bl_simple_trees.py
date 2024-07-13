@@ -14,17 +14,19 @@ print('Using input file', args.filename)
 out_file_name = args.outname
 
 if out_file_name is None:
-    out_file_name = args.filename[:-5] + '_skimmed.root'
+    out_file_name = args.filename[:-5] + '_simple.root'
 
 file = uproot.open(args.filename)
-name = file.keys()[0]
-arrays = file[name].arrays()
+# name = file.keys()[0]
+# arrays = file[name].arrays()
+
+keep_trees = [
+    'VirtualDetector/Det4',
+    'VirtualDetector/Det7',
+    'VirtualDetector/Det8',
+]
 
 with uproot.recreate(out_file_name) as output_file:
-    
-    # for det in ['Det1', 'Det2', 'Det3', 'Det4', 'Det5', 'Det6', 'Det7', 'Det8', 'TOFus', 'TOFds']:
-    for det in ['Det3', 'Det4', 'Det5', 'Det6', 'Det7', 'Det8', 'TOFus', 'TOFds']:
-        
-        mask = arrays[f'TrackPresent{det}'] == True
-        output_file[f'Events{det}'] = arrays[mask]
+    for tree_name in keep_trees:
+        output_file[tree_name] = file[tree_name].arrays()
 
