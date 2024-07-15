@@ -26,7 +26,6 @@ echo "first = $first"
 echo "last = $last"
 echo "OUTDIR = $OUTDIR"
 echo "BFIELD = $BFIELD"
-echo "BSCALE = $BSCALE"
 SUBSPILL=$((${PROCESS}+1 ))
 
 echo
@@ -50,7 +49,7 @@ ls -lh ${CONDOR_DIR_INPUT}
 echo 
 
 echo "Running g4bl with input file $G4BNBINPUT"
-g4bl $G4BNBINPUT first=$first last=$last BFIELD=$BFIELD BSCALE=$BSCALE
+g4bl $G4BNBINPUT first=$first last=$last BFIELD=$BFIELD
 if [[ $? -ne 0 ]]; then
    echo "The g4bl command failed"
    exit 1

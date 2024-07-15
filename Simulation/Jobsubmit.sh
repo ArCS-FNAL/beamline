@@ -1,7 +1,6 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
-export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/config05_2/
-# export G4BNBINPUT=arcs_beamline.in
-export G4BNBINPUT=arcs_beamline_config05.in
+export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/config06_1/
+export G4BNBINPUT=arcs_beamline_config06.in
 export OUTFILE=sim_arcs_beamline
 
 # Number of jobs to submit
@@ -11,10 +10,10 @@ export NJOBS=10000
 export JOBSIZE=30000
 
 # Bending magnets fields
-export BFIELD=-0.2121 # 60 Amps
-# export BFIELD=-0.3361 # 100 Amps
-export BSCALE=+1 # pos
-# export BSCALE=-1 # neg
+export BFIELD=-0.2121 # 60 Amps pos
+# export BFIELD=-0.3361 # 100 Amps pos
+# export BFIELD=0.2121 # 60 Amps neg
+# export BFIELD=0.3361 # 100 Amps neg
 
 # Copy all neded files to a folder on resilient
 mkdir -p ${OUTDIR}
@@ -25,6 +24,7 @@ cp -f ${PWD}/MergeTrees.py ${BOOKDIR}
 cp -f ${PWD}/make_skimmed_trees.py ${BOOKDIR}
 cp -f ${PWD}/make_g4bl_simple_trees.py ${BOOKDIR}
 
+# Submit grid job
 jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
 -l '+SingularityImage=\"/cvmfs/singularity.opensciencegrid.org/fermilab/fnal-wn-sl7:latest\"' \
 --append_condor_requirements='(TARGET.HAS_SINGULARITY=?=true)' \
@@ -42,7 +42,6 @@ jobsub_submit -G lariat --memory=500MB --expected-lifetime=23h -N ${NJOBS} \
 -e G4BNBINPUT \
 -e OUTFILE \
 -e BFIELD \
--e BSCALE \
 --debug file://$PWD/Script.sh
 
 
