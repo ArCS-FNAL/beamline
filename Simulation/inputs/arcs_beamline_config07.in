@@ -48,12 +48,12 @@ g4ui when=4 "/vis/viewer/set/background 1 1 1"
 #beam gaussian particle=proton nEvents=10000 sigmaX=2.0 sigmaY=2.0 beamZ=00.0 \
 #   meanMomentum=720.0 sigmaP=50.0 rotation=y-13
 
- #beam gaussian particle=pi+ firstEvent=$first lastEvent=$last sigmaX=2.0 sigmaY=2.0 beamZ=-500.0 \
-   #meanMomentum=64000.0
+ beam gaussian particle=pi+ firstEvent=$first lastEvent=$last sigmaX=2.0 sigmaY=2.0 beamZ=-500.0 \
+   meanMomentum=64000.0
 
 
- beam gaussian particle=e- firstEvent=$first lastEvent=$last sigmaX=0.0 sigmaY=0.0 beamZ=39595.425-5000.0 \
-   meanMomentum=2500
+ #beam gaussian particle=e- firstEvent=$first lastEvent=$last sigmaX=0.0 sigmaY=0.0 beamZ=39595.425-5000.0 \
+   #meanMomentum=2500
 
  trackcuts  keep=pi+,pi-,pi0,kaon+,kaon-,mu+,mu-,e+,e-,gamma,proton,anti_proton
 
