@@ -34,4 +34,9 @@ group JGG length=$JGG_length material=Air
       place coil_assembly x=0 y=-(0.5*$JGG_height-$JGG_top_bottom_steel_height-0.5*$JGG_coil_assembly_height) z=0
       place inside_coil_steel x=0 y=0.5*$JGG_height-$JGG_top_bottom_steel_height-0.5*$JGG_coil_assembly_height z=0
       place inside_coil_steel x=0 y=-(0.5*$JGG_height-$JGG_top_bottom_steel_height-0.5*$JGG_coil_assembly_height) z=0
+
+      # Virtual detector inside the JGG
+      place DetPrime rename=+Det1 z=-$JGG_length/4 x=0 y=0
+      place DetPrime rename=+Det2 z=0 x=0 y=0
+      place DetPrime rename=+Det3 z=+$JGG_length/4 x=0 y=0
 endgroup
