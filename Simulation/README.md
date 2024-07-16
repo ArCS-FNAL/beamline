@@ -41,3 +41,8 @@ Produced files are in
 
 Check status of all your jobs: `jobsub_q -G lariat`
 Remove all your jobs: `jobsub_rm -all  -G lariat`
+
+To run the simulation on Mac, for testing, go to the `inputs` folder, then:
+```
+/Applications/G4beamline-3.08.app/Contents/MacOS/g4bl arcs_beamline_config07.in first=0 last=10 BFIELD=-0.2
+```
