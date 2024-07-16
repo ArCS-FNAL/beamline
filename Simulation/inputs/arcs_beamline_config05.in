@@ -28,6 +28,9 @@ param cosDS=0.998629535 #cos ( 3 deg)
 param killshld=0
 param kill_aperture=0
 
+virtualdetector Det  width=128.0  height=125.0 color=0,1,0  length=25.0
+virtualdetector DetPrime width=470.0  height=400.0 color=0,1,0 length=25.0
+
 #Import JGG magnet definition and fieldmap
 include JGG.in
 fieldmap JGG_field file=jgg_field_map.txt
@@ -395,7 +398,7 @@ place JGG_field z=39595.425 y=$translatey x=0
   #place Det rename=Det8 z=57832.7 x=0 y=$translatey rotation=y3
   #place ChFram          z=57832.7 x=0 y=$translatey rotation=y3
 
-  place DetPrime rename=Det8 z=39595.425 x=0 y=$translatey 
+  #place DetPrime rename=Det8 z=39595.425 x=0 y=$translatey 
   # place ChFram          z=39595.425 x=0 y=$translatey 
 
 #-------------------------------------#-------------------------------------#-------------------------------------
