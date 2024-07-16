@@ -1,0 +1,90 @@
+# test.g4bl
+
+physics QGSP_BIC
+
+box Vis height=100 width=100 length=100 color=1,1,1,0.2
+# place Vis x=-1270.0 y=-558.8 z=-2032.0
+
+beam gaussian particle=pi+ firstEvent=0 lastEvent=10 sigmaX=0 sigmaY=0 beamZ=-2000.0 \
+   meanMomentum=500
+
+g4ui when=4 "/vis/viewer/set/background 1 1 1"
+
+
+param inch=25.4
+
+
+
+param killshld=0
+group NewCol length=58.00*$inch+90
+# Base plate  58 inches x 32 inches, 5.19
+# Four slabs 5.19, 2, 5.19, 5.19,  all 32 inches wide
+# Trap hole = 5.65*cos(16),  2.83 at ds, cos(16) at us,   42.76/cos16 long
+# The Fe length = 42.76 inches ~= 1086 mm
+# The Fe stack is 10 inches high =254 mm
+# Collimator opening is 2" high
+    box botslab height=5.19*$inch length=58.00*$inch  width=32.0*$inch  material=Fe color=0,1,1 kill=$killshld
+    box topbot  height=5.19*$inch length=42.76*$inch  width=32.0*$inch  material=Fe color=0,1,1 kill=$killshld
+    box mid    height=2.00*$inch length=42.76*$inch  width=11.6*$inch  material=Fe color=0,1,1 kill=$killshld
+    param zmov=7.62*$inch
+
+    place botslab rename=+btslab   z=0.00   y=-(1.0+5.19/2.0)*$inch-5.19*$inch
+    place topbot  rename=+bot      z=$zmov  y=-(1.0+5.19/2.0)*$inch
+    place mid     rename=+midleft  z=$zmov  y=0.0 x=+296/2+67.29  rotation=y-14.03
+    place mid     rename=+midrigh  z=$zmov  y=0.0 x=-296/2-67.29  rotation=y-17.97
+    place topbot  rename=+top      z=$zmov  y=(1.0+5.19/2.0)*$inch
+endgroup
+lace NewCol x=0 y=0 z=0 rotation=y3
+
+
+# ------------------------------
+
+# param killshld=0
+# box botslab height=5.19*$inch length=58.00*$inch  width=32.0*$inch  material=Fe color=0,1,1 kill=$killshld
+# box topbot  height=5.19*$inch length=42.76*$inch  width=32.0*$inch  material=Fe color=0,1,1 kill=$killshld
+# box mid    height=2.00*$inch length=42.76*$inch  width=11.6*$inch  material=Fe color=0,1,1 kill=$killshld
+# param zmov=7.62*$inch
+# # NewCol x y z
+# define NewCol \
+#     "place botslab rename=+btslab  z=$3+0.00   x=$1 y=$2-(1.0+5.19/2.0)*$inch-5.19*$inch" \
+#     "place topbot  rename=+bot     z=$3+$zmov  x=$1 y=$2-(1.0+5.19/2.0)*$inch" \
+#     "place mid  rename=+midleft    z=$3+$zmov  x=$1 y=$2+0.0 x=+296/2+67.29  rotation=y-14.03" \
+#     "place mid  rename=+midrigh    z=$3+$zmov  x=$1 y=$2+0.0 x=-296/2-67.29  rotation=y-17.97" \
+#     "place topbot  rename=+top     z=$3+$zmov  x=$1 y=$2+(1.0+5.19/2.0)*$inch" \
+# NewCol 0 0 0
+
+
+
+
+# -----------------------------------------------
+
+# virtualdetector Det width=128.0 height=125.0 color=0,1,0 length=25.0
+# param FramKill=0
+# group ChFram length=100
+#     box FramS height=254.0 width=63.0  length=25.0 color=1,0,1 kill=$FramKill material=Al
+#     box FramT height=63.0  width=128.0 length=25.0 color=1,0,1 kill=$FramKill material=Al
+#     place FramS rename=+FrameLeft   z=0.0 x=-95.5 
+#     place FramS rename=+FrameRight   z=0.0 x=+95.5 
+#     place FramT rename=+FrameBottom z=0.0 y=-95.5 
+#     place FramT rename=+FrameTop  z=0.0 y=+95.5
+#     place Det rename=+ x=0 y=0 z=0
+# endgroup
+# place ChFram rename=Det1 x=0 y=0 z=0
+
+# -----------------------------------------------
+
+
+
+
+#box T height=100 width=100 length=10 kill=1
+#cylinder H outerRadius=25 length=10.001 color=1,0,0
+#place H parent=T z=0
+#do i -6 6 1
+#    param x=$i*100
+#    do j -6 6 1
+#        param y=$j*100
+#        place T z=0 x=$x y=$y
+#    enddo
+#enddo
+#beam gaussian sigmaX=-700 sigmaY=-700 nEvents=100000
+#zntuple Z100 z=100
