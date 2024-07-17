@@ -164,7 +164,8 @@ for name, tuple in INtuples.iteritems():
 # Lists of variable names and TTree names to use in loops.
 vars = ('x','y','z','t','Px','Py','Pz','PDGid','ParentID','EventID','TrackID')
 StartLine = ('StartLine',)
-WCs = ('Det1', 'Det2', 'Det3', 'Det4', 'Det5', 'Det6', 'Det7' , 'Det8')
+# WCs = ('Det1', 'Det2', 'Det3', 'Det4', 'Det5', 'Det6', 'Det7' , 'Det8')
+WCs = ('Det1', 'Det2', 'Det3', 'Det4', 'Det5', 'Det6', 'Det7' , 'JGGDet1', 'JGGDet2', 'JGGDet3')
 Scints = ('TOFus', 'TOFds') # Horz removed
 
 ## One dictionary to rule them all. ##
