@@ -11,6 +11,11 @@
 # BFIELD   LArIAT bending magnets field in T (-0.2121 pos60Amp; -0.3361 pos100Amp)
 #______________________________________________________________________
 
+param -unset first=0
+param -unset last=10
+param -unset BFIELD=-0.2121
+
+
 #randomseed Set PROCESSJOBNUMBER
 param worldMaterial=Air
 physics QGSP_BIC
