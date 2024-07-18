@@ -1,6 +1,6 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
-export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/config07_1/
-export G4BNBINPUT=arcs_beamline_config07.in
+export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/config08_1/
+export G4BNBINPUT=arcs_beamline_config08.in
 export OUTFILE=sim_arcs_beamline
 
 # Number of jobs to submit

@@ -38,7 +38,7 @@ Produced files are in
 | `config05_2`  | config05  | Added script to make simpler G4Beamline output files |
 | `config06_1`  | config06  | BFIELD=-0.2121. Same as 05... |
 | `config07_1`  | config07  | BFIELD = 0. Turn off LArIAT magnets. |
-
+| `config08_1`  | config08  | BFIELD = 0. Turn off LArIAT magnets. |
 
 ## Useful Commands
 
