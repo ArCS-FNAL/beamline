@@ -19,6 +19,7 @@ param JGG_top_bottom_steel_height=0.5*($JGG_height-$JGG_vertical_aperture)-$JGG_
 param JGG_inside_coil_steel_width=$JGG_coil_assembly_width-2*$JGG_coil_assembly_thickness_x
 param JGG_inside_coil_steel_length=$JGG_length-2*$JGG_coil_assembly_thickness_z
 
+material LAr A=40 Z=18 density=1.40 state=l
 
 group JGG length=$JGG_length material=Air
       box side_steel width=$JGG_side_steel_width height=$JGG_height length=$JGG_length material=Fe kill=$kill_aperture color=0,0.2,0
@@ -39,4 +40,15 @@ group JGG length=$JGG_length material=Air
       place DetPrime rename=+Det1 z=-$JGG_length/4 x=0 y=0
       place DetPrime rename=+Det2 z=0 x=0 y=0
       place DetPrime rename=+Det3 z=+$JGG_length/4 x=0 y=0
+
+      tubs cryo innerRadius=0.0 outerRadius=500 length=5 material=Fe color=0.9,0.9,0.9,0.2
+      box preLAr height=400 width=460 length=50 material=LAr color=0,0,1,0.8
+
+      place cryo   rename=+cryo_a z=-$JGG_length/4-200        x=0 y=0
+      place cryo   rename=+cryo_b z=-$JGG_length/4-200+100    x=0 y=0
+      place preLAr rename=+prelar z=-$JGG_length/4-200+100+50 x=0 y=0
+
+      # TPC
+      # box TPC height=400 width=460 length=900 material=LAr color=0.9,0.9,0.9
+      # place TPC z=0 x=0 y=0
 endgroup
