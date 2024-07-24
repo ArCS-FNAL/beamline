@@ -27,6 +27,11 @@ keep_trees = [
     'VirtualDetector/JGGDet1',
     'VirtualDetector/JGGDet2',
     'VirtualDetector/JGGDet3',
+    'VirtualDetector/WC1',
+    'VirtualDetector/WC2',
+    'VirtualDetector/WC3',
+    'VirtualDetector/TOF1',
+    'VirtualDetector/TOF2',
 ]
 
 with uproot.recreate(out_file_name) as output_file:
