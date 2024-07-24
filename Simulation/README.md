@@ -21,6 +21,7 @@ G4Beamline input files are in `inputs/`. Description:
 | config06 | `arcs_beamline_config06.in`  | Same as config05, but LArIAT bending magnets field can be set with BFIELD | Det8 overlaps with JGG group volume and particles were not saved in this volume. |
 | config07 | `arcs_beamline_config07.in`  | Same as config06, but Det8 has been removed. We have JGGDet1, JGGDet2, JGGDet3 instead, placed at 1/4, 1/2, and 3/4 of the JGG. They no longer overlap with the JGG volume. | |
 | config08 | `arcs_beamline_config08.in`  | Same as config07, but with two disks of 5 mm of steel to emulate the cryostat front face, plus 50 mm of LAr before the TPC. These items are just before JGGDet1, which is still at 1/4 of the JGG. | |
+| config09 | `arcs_beamline_config09.in`  | Same as config08, but removed the two LArIAT bending magnets and downstream collimator. Also added 2 more TOFs and 3 more WC on-axis, called WC1,2,3 and TOF1,2. | |
 
 
 ## Productions
@@ -39,6 +40,7 @@ Produced files are in
 | `config06_1`  | config06  | BFIELD=-0.2121. Same as 05... |
 | `config07_1`  | config07  | BFIELD = 0. Turn off LArIAT magnets. |
 | `config08_1`  | config08  | BFIELD = 0. Turn off LArIAT magnets. |
+| `config09_1`  | config09  | No magnets, no downstream collimator. 3 WCs and 2 TOFs on axis. |
 
 ## Useful Commands
 
