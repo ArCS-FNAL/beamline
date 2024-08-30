@@ -19,22 +19,19 @@ if out_file_name is None:
 file = uproot.open(args.filename)
 # name = file.keys()[0]
 # arrays = file[name].arrays()
-
+# Adjust the keep_trees list to only include the desired trees
 keep_trees = [
-    'VirtualDetector/Det4',
+    'VirtualDetector/DetT1',
+    'VirtualDetector/DetT2',
     'VirtualDetector/Det7',
-    # 'VirtualDetector/Det8',
     'VirtualDetector/JGGDet1',
-    'VirtualDetector/JGGDet2',
-    'VirtualDetector/JGGDet3',
-    'VirtualDetector/WC1',
-    'VirtualDetector/WC2',
-    'VirtualDetector/WC3',
-    'VirtualDetector/TOF1',
-    'VirtualDetector/TOF2',
 ]
 
 with uproot.recreate(out_file_name) as output_file:
     for tree_name in keep_trees:
-        output_file[tree_name] = file[tree_name].arrays()
+        # Ensure the tree exists before attempting to copy it
+        if tree_name in file:
+            output_file[tree_name] = file[tree_name].arrays()
+        else:
+            print(f"Tree {tree_name} not found in the input file.")
 
