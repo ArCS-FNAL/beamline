@@ -29,9 +29,5 @@ keep_trees = [
 
 with uproot.recreate(out_file_name) as output_file:
     for tree_name in keep_trees:
-        # Ensure the tree exists before attempting to copy it
-        if tree_name in file:
-            output_file[tree_name] = file[tree_name].arrays()
-        else:
-            print(f"Tree {tree_name} not found in the input file.")
+        output_file[tree_name] = file[tree_name].arrays()
 
