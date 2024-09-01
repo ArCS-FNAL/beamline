@@ -1,6 +1,6 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/gcicogna/beamline_bookdir
 export OUTDIR=/pnfs/lariat/persistent/users/gcicogna/BeamLineSimOutputs/pos0Amps/config08_new/
-export G4BNBINPUT=arcs_beamline_config08.in
+export G4BNBINPUT=arcs_beamline_config09.in
 export OUTFILE=sim_arcs_beamline
 
 # Standard production is done wih 10000 jobs with 30000 pions each
