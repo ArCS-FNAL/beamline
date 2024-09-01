@@ -369,7 +369,7 @@ place DetPrime rename=Det7 z=38000 x=0 y=$translatey
 #--------------JGG (modified to fit current coordinate system) ------------------------
 fieldlines center=0,$translatey,39595.425 radius=10000 nLines=1000 color="0,0,0"
 place JGG z=39595.425 y=$translatey x=0
-# place JGG_field z=39595.425 y=$translatey x=0
+place JGG_field z=39595.425 y=$translatey x=0
 
 
 #------------------------- WC 8 -------------------------  
