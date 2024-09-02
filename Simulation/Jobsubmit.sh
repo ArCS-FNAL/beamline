@@ -1,5 +1,5 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/gcicogna/beamline_bookdir
-export OUTDIR=/pnfs/lariat/persistent/users/gcicogna/BeamLineSimOutputs/pos0Amps/config09_0/
+export OUTDIR=/pnfs/lariat/persistent/users/gcicogna/BeamLineSimOutputs/pos0Amps/config09_1/
 export G4BNBINPUT=arcs_beamline_config09.in
 export OUTFILE=sim_arcs_beamline
 
