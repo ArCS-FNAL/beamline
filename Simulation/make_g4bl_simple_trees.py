@@ -23,17 +23,17 @@ file = uproot.open(args.filename)
 keep_trees = [
     'VirtualDetector/Det4',
     'VirtualDetector/Det7',
-    #'VirtualDetector/DetT1',
-    #'VirtualDetector/DetT2',
+    'VirtualDetector/DetT1',
+    'VirtualDetector/DetT2',
     # 'VirtualDetector/Det8',
     'VirtualDetector/JGGDet1',
     'VirtualDetector/JGGDet2',
     'VirtualDetector/JGGDet3',
-    'VirtualDetector/WC1',
-    'VirtualDetector/WC2',
-    'VirtualDetector/WC3',
-    'VirtualDetector/TOF1',
-    'VirtualDetector/TOF2',
+    #'VirtualDetector/WC1',
+    #'VirtualDetector/WC2',
+    #'VirtualDetector/WC3',
+    #'VirtualDetector/TOF1',
+    #'VirtualDetector/TOF2',
 ]
 
 with uproot.recreate(out_file_name) as output_file:
