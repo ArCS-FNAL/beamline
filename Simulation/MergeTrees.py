@@ -197,6 +197,7 @@ for systname,syst in detsysts.iteritems():
 #Make one of each struct to use
 structs = {}
 for systname in detsysts.keys():
+    print("Creating struct for systname:", systname)
     structs[systname] = eval("ROOT."+systname+"stuff()")
 print "Done.",
 
