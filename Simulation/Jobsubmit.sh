@@ -12,8 +12,8 @@ export NJOBS=2 #10000
 export JOBSIZE=100 #30000
 
 # LArIAT bending magnets fields
-export BFIELD=0 # magnets off
-#export BFIELD=-0.2121 # 60 Amps pos
+#export BFIELD=0 # magnets off
+export BFIELD=-0.2121 # 60 Amps pos
 # export BFIELD=-0.3361 # 100 Amps pos
 # export BFIELD=0.2121 # 60 Amps neg
 # export BFIELD=0.3361 # 100 Amps neg
