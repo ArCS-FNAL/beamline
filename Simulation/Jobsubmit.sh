@@ -6,14 +6,14 @@ export OUTFILE=sim_arcs_beamline
 # Standard production is done wih 10000 jobs with 30000 pions each
 
 # Number of jobs to submit
-export NJOBS=2 #10000
+export NJOBS=5000
 
 # Number of pions on target per job
-export JOBSIZE=100 #30000
+export JOBSIZE=30000
 
 # LArIAT bending magnets fields
 #export BFIELD=0 # magnets off
-export BFIELD=-0.2121 # 60 Amps pos
+#export BFIELD=-0.2121 # 60 Amps pos
 # export BFIELD=-0.3361 # 100 Amps pos
 # export BFIELD=0.2121 # 60 Amps neg
 # export BFIELD=0.3361 # 100 Amps neg
