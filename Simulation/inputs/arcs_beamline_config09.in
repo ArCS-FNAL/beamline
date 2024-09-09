@@ -355,7 +355,9 @@ place DetPrime rename=Det6 z=11300 x=$muon_stack_x y=$muon_stack_y
 #------------------------- WC Test US -------------------------  
 # place more upstream than Det 7
 
-place DetPrime rename=DetT1 z=15000 x=0 y=$translatey
+place DetPrime rename=DetT0 z=5000 x=0 y=$translatey
+
+place DetPrime rename=DetT1 z=10000 x=0 y=$translatey
 
 place DetPrime rename=DetT2 z=29000 x=0 y=$translatey
 
