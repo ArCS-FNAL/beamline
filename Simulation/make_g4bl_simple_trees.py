@@ -21,7 +21,8 @@ file = uproot.open(args.filename)
 # arrays = file[name].arrays()
 
 keep_trees = [
-    'VirtualDetector/Det4',
+    #'VirtualDetector/Det4',
+    'VirtualDetector/StartLine',
     'VirtualDetector/Det7',
     'VirtualDetector/DetT0',
     'VirtualDetector/DetT1',
