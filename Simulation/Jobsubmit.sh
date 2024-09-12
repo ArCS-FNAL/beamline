@@ -6,7 +6,7 @@ export OUTFILE=sim_arcs_beamline
 # Standard production is done wih 10000 jobs with 30000 pions each
 
 # Number of jobs to submit
-export NJOBS=5000
+export NJOBS=6000
 
 # Number of pions on target per job
 export JOBSIZE=30000
