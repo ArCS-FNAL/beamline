@@ -11,7 +11,6 @@ from glob import glob
 import awkward as ak
 from matplotlib.colors import Normalize
 from matplotlib.cm import get_cmap
-%matplotlib inline
 
 prop_cycle = plt.rcParams['axes.prop_cycle']
 _colors = prop_cycle.by_key()['color']
@@ -120,6 +119,8 @@ dfs['DetT0'] = add_vars_to_df(dfs['DetT0'])
 #dfs['DetT2'] = add_vars_to_df(dfs['DetT2'])
 dfs['Det7'] = add_vars_to_df(dfs['Det7'])
 dfs['JGGDet1'] = add_vars_to_df(dfs['JGGDet1'])
+
+print('Finished reading data!')
 
 # print(dfs['DetT1'])
 # print(dfs['JGGDet1'])
