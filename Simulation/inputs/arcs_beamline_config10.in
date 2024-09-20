@@ -267,6 +267,8 @@ place DetPrime rename=Det5 z=9416 x=-1150 y=0.0
 
 #------------------------------------- LArIAT muon range stack (modified to fit current coordinate system) ----------------------------
 
+param floor_magnet=-51.507*$inch
+
 param muon_stack_x=-1150 
 # #suprajab: same as LArIAT TPC
 param muon_stack_startz=9891 
@@ -274,8 +276,8 @@ param muon_stack_startz=9891
 param muon_stack_y=0.0
 # #suprajab: same as downstream TOF, which is the last component that has a y value 
 
-place A_block x=$muon_stack_x y=$floor+0.5*1.5*$feet z=10471
-place C_block x=$muon_stack_x y=$floor+1.5*$feet+0.5*3*$feet z=10471-0.5*1.5*$feet
+place A_block x=$muon_stack_x y=$floor_magnet z=10471
+place C_block x=$muon_stack_x y=$floor_magnet+0.5*$feet+0.5*3*$feet z=10471-0.5*1.5*$feet
 
 param steel_gap=30
 box steel_2 height=25.5*$inch width=21*$inch length=20 material=Fe color=0.3,0.0,0.2 kill=$kill_aperture
@@ -300,13 +302,11 @@ place steel_10 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+10*
 
 param US_pipe_holder_z=14996.8
 
-place H_block z=$US_pipe_holder_z x=0.0 y=$floor+0.5*1.5*$feet+2*1.5*$feet
-place E_block z=$US_pipe_holder_z+0.5*16*$feet-0.5*3*$feet-7*$inch x=0.0 y=$floor+0.5*1.5*$feet
-place E_block z=$US_pipe_holder_z+0.5*16*$feet-0.5*3*$feet-7*$inch x=0.0 y=$floor+1.5*1.5*$feet
-place E_block z=$US_pipe_holder_z-0.5*16*$feet+0.5*3*$feet+8*$inch x=0.0 y=$floor+0.5*1.5*$feet
-place E_block z=$US_pipe_holder_z-0.5*16*$feet+0.5*3*$feet+8*$inch x=0.0 y=$floor+1.5*1.5*$feet
-place F_block z=$US_pipe_holder_z+0.5*16*$feet-0.5*1.5*$feet x=0.0 y=$floor+1.5*$feet+2*1.5*$feet+0.5*1.5*$feet rotation=Y90
-place F_block z=$US_pipe_holder_z-0.5*16*$feet+0.5*1.5*$feet x=0.0 y=$floor+1.5*$feet+2*1.5*$feet+0.5*1.5*$feet rotation=Y90
+place H_block z=$US_pipe_holder_z x=0.0 y=$floor_magnet+1.5*$feet
+place E_block z=$US_pipe_holder_z+0.5*16*$feet-0.5*3*$feet-7*$inch x=0.0 y=$floor_magnet
+place E_block z=$US_pipe_holder_z-0.5*16*$feet+0.5*3*$feet+8*$inch x=0.0 y=$floor_magnet
+place F_block z=$US_pipe_holder_z+0.5*16*$feet-0.5*1.5*$feet x=0.0 y=$floor_magnet+1.5*$feet+1.5*$feet rotation=Y90
+place F_block z=$US_pipe_holder_z-0.5*16*$feet+0.5*1.5*$feet x=0.0 y=$floor_magnet+1.5*$feet+1.5*$feet rotation=Y90
 
 #-------------- DS pipe holder (modified to fit current coordinate system) -------------
 
@@ -315,15 +315,12 @@ place F_block z=$US_pipe_holder_z-0.5*16*$feet+0.5*1.5*$feet x=0.0 y=$floor+1.5*
 
 param ds_pipe_holder_z=29657.025
 
-place H_block z=$ds_pipe_holder_z x=0 y=$floor+0.5*1.5*$feet+2*$feet
-
-place K_block z=$ds_pipe_holder_z+6*$feet-24.5*$inch x=0 y=$floor+0.5*$feet
-place K_block z=$ds_pipe_holder_z+6*$feet-24.5*$inch x=0 y=$floor+1.5*$feet
-place K_block z=$ds_pipe_holder_z-6*$feet+29.5*$inch-0.5*3*$feet x=0 y=$floor+0.5*$feet
-place K_block z=$ds_pipe_holder_z-6*$feet+29.5*$inch-0.5*3*$feet x=0 y=$floor+1.5*$feet
-
-place L_block z=$ds_pipe_holder_z-6*$feet x=0 y=$floor+1.5*$feet+2*$feet+0.5*$feet
-place L_block z=$ds_pipe_holder_z-6*$feet x=0 y=$floor+1.5*$feet+2*$feet+1.5*$feet
+place H_block z=$ds_pipe_holder_z x=0 y=$floor_magnet+2*$feet
+place K_block z=$ds_pipe_holder_z+6*$feet-24.5*$inch x=0 y=$floor_magnet
+place K_block z=$ds_pipe_holder_z+6*$feet-24.5*$inch x=0 y=$floor_magnet+1*$feet
+place K_block z=$ds_pipe_holder_z-6*$feet+29.5*$inch-0.5*3*$feet x=0 y=$floor_magnet
+place K_block z=$ds_pipe_holder_z-6*$feet+29.5*$inch-0.5*3*$feet x=0 y=$floor_magnet+1*$feet
+place L_block z=$ds_pipe_holder_z-6*$feet x=0 y=$floor_magnet+1.25*$feet+2*$feet
 
 #------------------------- WC 6 -------------------------  
 # place after MuRS

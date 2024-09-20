@@ -1,15 +1,15 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/gcicogna/beamline_bookdir
-export OUTDIR=/pnfs/lariat/persistent/users/gcicogna/BeamLineSimOutputs/JGGon/test_m/
+export OUTDIR=/pnfs/lariat/persistent/users/gcicogna/BeamLineSimOutputs/JGGon/config10_test/
 export G4BNBINPUT=arcs_beamline_config10.in
 export OUTFILE=sim_arcs_beamline
 
 # Standard production is done wih 10000 jobs with 30000 pions each
 
 # Number of jobs to submit
-export NJOBS=2
+export NJOBS=2000
 
 # Number of pions on target per job
-export JOBSIZE=100
+export JOBSIZE=30000
 
 # LArIAT bending magnets fields
 export BFIELD=0 # magnets off
