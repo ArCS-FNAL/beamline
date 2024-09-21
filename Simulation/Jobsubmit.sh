@@ -1,12 +1,12 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/gcicogna/beamline_bookdir
-export OUTDIR=/pnfs/lariat/persistent/users/gcicogna/BeamLineSimOutputs/JGGon/config10_test/
+export OUTDIR=/pnfs/lariat/persistent/users/gcicogna/BeamLineSimOutputs/JGGon_LArIAToff/config10_1/
 export G4BNBINPUT=arcs_beamline_config10.in
 export OUTFILE=sim_arcs_beamline
 
 # Standard production is done wih 10000 jobs with 30000 pions each
 
 # Number of jobs to submit
-export NJOBS=2000
+export NJOBS=6000
 
 # Number of pions on target per job
 export JOBSIZE=30000
