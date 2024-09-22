@@ -1,5 +1,5 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/gcicogna/beamline_bookdir
-export OUTDIR=/pnfs/lariat/persistent/users/gcicogna/BeamLineSimOutputs/JGGon_LArIAToff/config10_1/
+export OUTDIR=/pnfs/lariat/persistent/users/gcicogna/BeamLineSimOutputs/JGGon_LArIATon/config10_1_pos60Amp/
 export G4BNBINPUT=arcs_beamline_config10.in
 export OUTFILE=sim_arcs_beamline
 
@@ -12,8 +12,8 @@ export NJOBS=6000
 export JOBSIZE=30000
 
 # LArIAT bending magnets fields
-export BFIELD=0 # magnets off
-#export BFIELD=-0.2121 # 60 Amps pos
+#export BFIELD=0 # magnets off
+export BFIELD=-0.2121 # 60 Amps pos
 # export BFIELD=-0.3361 # 100 Amps pos
 # export BFIELD=0.2121 # 60 Amps neg
 # export BFIELD=0.3361 # 100 Amps neg
