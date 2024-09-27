@@ -1,0 +1,458 @@
+#   Meson Center LArIAT Tertiary Beam - November 2016
+#    produce at 13 deg.    Beware of stuff sneaking past collimator
+#
+#  Remember, lengths are in mm, fields is Tesla !  Momentum in MeV
+
+#  Assorted corrections made on magnet details,  8 Jan 2013
+#
+# Inputs:
+# first    First event number
+# last     Last event number
+# BFIELD   LArIAT bending magnets field in T (-0.2121 pos60Amp; -0.3361 pos100Amp)
+#______________________________________________________________________
+
+param -unset first=0
+param -unset last=10
+param -unset BFIELD=-0.2121
+
+
+#randomseed Set PROCESSJOBNUMBER
+param worldMaterial=Air
+physics QGSP_BIC
+param inch=25.4
+param feet=304.8
+
+ 
+param histoFile=sim_arcs_beamline.root
+## Maybe we should just let the output get dumped to the stdout.
+## output $histoFile.out
+#param first=0
+#param last=100
+
+param sinUS=0.224951054 #sin (13 deg)
+param cosUS=0.974370065 #cos (13 deg)
+param sinDS=0.052335956 #sin ( 3 deg)
+param cosDS=0.998629535 #cos ( 3 deg)
+ 
+#      killshld   used to kill tracks in shielding, significantly faster running
+param killshld=0
+param kill_aperture=0
+
+virtualdetector Det  width=128.0  height=125.0 color=0,1,0  length=25.0
+virtualdetector DetPrime width=470.0  height=400.0 color=0,1,0 length=25.0
+
+#Import JGG magnet definition and fieldmap
+include JGG.in
+fieldmap JGG_field file=field_multiplied_0.10.txt
+ 
+#g4ui when=4 "/vis/scene/add/axes 1 2 3 500 mm"
+g4ui when=4 "/vis/viewer/set/background 1 1 1"
+
+
+#    Beam used to check central momentum of spectrometer ( no target )
+#beam gaussian particle=proton nEvents=10000 sigmaX=2.0 sigmaY=2.0 beamZ=00.0 \
+#   meanMomentum=720.0 sigmaP=50.0 rotation=y-13
+
+ beam gaussian particle=pi+ firstEvent=$first lastEvent=$last sigmaX=2.0 sigmaY=2.0 beamZ=-500.0 \
+   meanMomentum=64000.0
+
+
+ #beam gaussian particle=e- firstEvent=$first lastEvent=$last sigmaX=0.0 sigmaY=0.0 beamZ=39595.425-5000.0 \
+   #meanMomentum=2500
+
+ trackcuts  keep=pi+,pi-,pi0,kaon+,kaon-,mu+,mu-,e+,e-,gamma,proton,anti_proton
+
+# Floor
+param floor=-1280
+
+# param translatey=720.5472
+param translatey=0
+param translatez=(2220.965*25.4)+50066.48+(3048/2.0)
+
+# Define common shielding blocks
+box A_block  width=3*$feet height=1.5*$feet length=7.5*$feet material=CONCRETE color=0.6,0.6,0.6 kill=$kill_aperture
+box B_block  width=3*$feet height=3*$feet length=7.5*$feet material=CONCRETE color=0.6,0.6,0.6 kill=$kill_aperture
+box C_block  width=3*$feet height=3*$feet length=6*$feet material=CONCRETE color=0.6,0.6,0.6 kill=$kill_aperture
+box D_block  width=3*$feet height=1.5*$feet length=6*$feet material=CONCRETE color=0.6,0.6,0.6 kill=$kill_aperture
+box E_block  width=3*$feet height=1.5*$feet length=3*$feet material=CONCRETE color=0.6,0.6,0.6 kill=$kill_aperture
+box K_block  width=3*$feet height=1*$feet length=3*$feet material=CONCRETE color=0.6,0.6,0.6 kill=$kill_aperture
+box F_block  width=1.5*$feet height=1.5*$feet length=3*$feet material=CONCRETE color=0.6,0.6,0.6 kill=$kill_aperture
+box H_block  width=3*$feet height=1.5*$feet length=16*$feet material=CONCRETE color=0.6,0.6,0.6 kill=$kill_aperture
+box J_block  width=3*$feet height=1.5*$feet length=12*$feet material=CONCRETE color=0.6,0.6,0.6 kill=$kill_aperture
+box L_block  width=1.5*$feet height=1*$feet length=3*$feet material=CONCRETE color=0.6,0.6,0.6 kill=$kill_aperture
+box M_block  width=1.5*$feet height=1.5*$feet length=1.5*$feet material=CONCRETE color=0.6,0.6,0.6 kill=$kill_aperture
+
+# center location of downstream pip holder H block
+param Hblock_z=$translatez-400-86*$inch-0.5*(60+19.5)*$inch-6183.788-127.5*$inch-8*$feet
+
+#------------------------------------- US pipe holder (before tertiary beam) ------------------------------------
+
+# Reference will be the center of the main H block
+# Downstream end is about 246.75" from the upstream end of the next set of holder blocks
+# So center-to-center from US to DS sets is 246.75"+ H block length
+param US_pipe_holder_z=$Hblock_z-(246.75*$inch+16*$feet)
+
+#place H_block z=$US_pipe_holder_z x=0.0 y=$floor+0.5*1.5*$feet+2*1.5*$feet
+#place E_block z=$US_pipe_holder_z+0.5*16*$feet-0.5*3*$feet-7*$inch x=0.0 y=$floor+0.5*1.5*$feet
+#place E_block z=$US_pipe_holder_z+0.5*16*$feet-0.5*3*$feet-7*$inch x=0.0 y=$floor+1.5*1.5*$feet
+#place E_block z=$US_pipe_holder_z-0.5*16*$feet+0.5*3*$feet+8*$inch x=0.0 y=$floor+0.5*1.5*$feet
+#place E_block z=$US_pipe_holder_z-0.5*16*$feet+0.5*3*$feet+8*$inch x=0.0 y=$floor+1.5*1.5*$feet
+#place F_block z=$US_pipe_holder_z+0.5*16*$feet-0.5*1.5*$feet x=0.0 y=$floor+1.5*$feet+2*1.5*$feet+0.5*1.5*$feet rotation=Y90
+#place F_block z=$US_pipe_holder_z-0.5*16*$feet+0.5*1.5*$feet x=0.0 y=$floor+1.5*$feet+2*1.5*$feet+0.5*1.5*$feet rotation=Y90
+
+#------------------------------------ target -------------------------
+
+#  Cu int. length.  135 g/Cm^2;  density = 9; so int length = 3.9 cm ( 39mm )
+# Target is a right parallelogramatic prism 1.25" = 31.75 mm high and wide, measured transverse to incoming beam.
+# 31.75 mm / (5 tan (16 deg)) = 22.145 mm
+# 31.75 mm / (5 tan (13 deg)) = 27.5048 mm (if we make a new one)
+# target:
+box slab height=31.75 length=209.55 width=6.35 material=Cu color=1,0.01,0.01
+place slab rename=slabMinus2 x=+2*(31.75)/5 z=-2*22.145
+place slab rename=slabMinus1 x=+1*(31.75)/5 z=-1*22.145
+place slab rename=slabCenter  x=0*(31.75)/5  z=0*22.145
+place slab rename=slabPlus2  x=-1*(31.75)/5 z=+1*22.145
+place slab rename=slabPlus2  x=-2*(31.75)/5 z=+2*22.145
+
+ 
+#------------------------------------ upstream collimator -------------------------
+
+group  NewCol
+# Base plate  58 inches x 32 inches, 5.19
+# Four slabs 5.19, 2, 5.19, 5.19,  all 32 inches wide
+# Trap hole = 5.65*cos(16),  2.83 at ds, cos(16) at us,   42.76/cos16 long
+# The Fe length = 42.76 inches ~= 1086 mm
+# The Fe stack is 10 inches high =254 mm
+# Collimator opening is 2" high
+
+ box botslab height=5.19*25.4 length=58.00*25.4  width=32.0*25.4  material=Fe color=0,1,1 kill=$killshld
+ box topbot  height=5.19*25.4 length=42.76*25.4  width=32.0*25.4  material=Fe color=0,1,1 kill=$killshld
+ #box mid     height=2.00*25.4 length=42.76*25.4  width=32.0*25.4  material=Fe color=0,1,1 kill=$killshld
+
+ box mid    height=2.00*25.4 length=42.76*25.4  width=11.6*25.4  material=Fe color=0,1,1 kill=$killshld
+ trap Coll height=1160.0 upperWidth=70.0 lowerWidth=150.0 length=2.0*25.4 color=1,0,0 material=Air
+  
+ param zmov=7.62*25.4
+
+ place botslab rename=btslab z=0.00  y=-6.19*25.4
+ place topbot  rename=bot     z=$zmov  y=-(1.0+5.19/2.0)*25.4
+ place mid  rename=midleft    z=$zmov  y=0.0 x=+296/2+67.29  rotation=y-14.03
+ place mid  rename=midrigh    z=$zmov  y=0.0 x=-296/2-67.29  rotation=y-17.97
+ place topbot  rename=top     z=$zmov  y=(1.0+5.19/2.0)*25.4
+
+ # Do we really need to place a trapezoid of air in the collimator hole?
+ #place Coll z=7.62*25.4+3.0 rotation=x-90,y-16
+
+endgroup
+
+ place NewCol z=(29.0+7.62)*25.4    x=-8.315*25.4+40.0  rotation=y3
+
+#-------------------------------- Wire Chamber (includes a virtualdetector) --------------------------------------
+param FramKill=0
+group WireChamber length=100
+    box FramS height=254.0 width=63.0  length=25.0 color=1,0,1 kill=$FramKill material=Al
+    box FramT height=63.0  width=128.0 length=25.0 color=1,0,1 kill=$FramKill material=Al
+    place FramS rename=+FrameLeft   z=0.0 x=-95.5 
+    place FramS rename=+FrameRight   z=0.0 x=+95.5 
+    place FramT rename=+FrameBottom z=0.0 y=-95.5 
+    place FramT rename=+FrameTop  z=0.0 y=+95.5
+    place Det rename=+ x=0 y=0 z=0
+endgroup
+#--------------------StartLine: Fake Detector ------------------
+
+virtualdetector StartLine width=400.0 height=200 material=Air color=0.9,0.9,0.7
+place StartLine rotation=y-13 z=1400.0-26.4 x=-300 y=0
+
+
+#------------------------------------ Time of Flight (TOF) counter -------------------------    
+param TOFusThick=50.8   ### 2 inches thick?
+virtualdetector TOFus width=150 height=150 length=$TOFusThick material=LUCITE color=0.05,0.05,0.93	
+place TOFus rotation=z45,y-13 z=1423.0 x=-346.54341
+
+#------------------------------------ WC 1 & WC 2 -------------------------  
+
+#  Wire chambers are Fenker chambers, 128 mm sq. instrumented, Det1, 2,3,4. suprajab, 17aug2022: Add Det5, 6, 7, 8 
+#  Fermilab TM-1179      2557.000     Feb 1983
+
+place WireChamber rename=Det1 z=1730.3369 x=-403.0472 y=0.0508 rotation=y-13
+place WireChamber rename=Det2 z=3181.9215 x=-738.0351 y=0.0762 rotation=y-13
+
+#------------------------------------ B1 & B2 -------------------------  
+  
+genericbend NDB fieldWidth=305.9 fieldHeight=140.4 fieldLength=571.85 kill=$killshld \
+	ironColor=1,0,0 ironWidth=533.4 ironHeight=474.675 ironLength=466.725
+	
+param B1=$BFIELD
+param B1z=3801
+param B2=$BFIELD
+param B2z=4491.00
+
+# total 10 deg bend 
+
+# fieldlines center=-918.44,0,$B1z radius=10000 nLines=1000 color="0,0,0"
+
+place NDB rename=NDB22 By=$B1 z=$B1z rotation=Y-13+2.5 x=-918.44
+place NDB rename=NDB21 By=$B2 z=$B2z rotation=Y-5.5    x=-1006.46
+
+#------------------------------------ WC 3 -------------------------  
+  
+place WireChamber rename=Det3 z=5167.5665 x=-1064.133 y=-2.921 rotation=y-3 
+
+
+#  virtualdetector MagVet  width=200.0  height=200.0 color=1,0,1  length=25.0 kill=1
+#  
+#  place MagVet rename=MagVet1 z=$B2z+600.0 x=+225.0-1060.0 rotation=y-3
+#  place MagVet rename=MagVet2 z=$B2z+600.0 x=-225.0-1060.0 rotation=y-3
+
+#----------Downstream aperture collimator -------------------------
+
+#    top and bottom blocks, and wedge side blocks
+# Overall: l=36" w=30" h=23"
+
+group DScoll
+    box dstb   height=8.5*$inch length=36*$inch width=30*$inch material=Fe color=0,1,1 kill=$killshld
+    box dsside height=6*$inch  length=36*$inch width=11*$inch  material=Fe color=0,.8,1 kill=$killshld
+
+    place dsside rename=+dsl  z=0 x=+8.475*$inch
+    place dsside rename=+dsr  z=0 x=-8.475*$inch
+    place dstb   rename=+dst  z=0  y=+(4.25+3)*$inch 
+    place dstb   rename=+dsb  z=0  y=-(4.25+3)*$inch 
+endgroup
+
+place DScoll z=6048.0 x=-1095.0 rotation=y-3.0
+
+#------------------------------------ WC 4 -------------------------  
+## Complex group of detectors right before the TiWindow:
+place WireChamber rename=Det4 z=7606.4872 x=-1195.0827 y=-20.4724 rotation=y-3
+  
+
+#------------------------------------ Downstream TOF -------------------------  
+
+param TOFdsThick=11   ### 2 inches thick?
+param TOFdsHeight=130.0 ### 13 cm 
+virtualdetector TOFds width=170 height=170 length=$TOFdsThick material=LUCITE color=0.05,0.05,0.93
+  place TOFds rename=TOFds z=8005.9022  x=-1186.1546-30 y=-11.695 rotation=y-3  
+
+#------------------------------------ Other components -------------------------  
+
+#virtualdetector TiWindow radius=114.5 length=1.0 material=Air color=1,0,0 
+#  place TiWindow z=$B2z+2600.0 x=-1124.3  rotation=y-3
+
+##Back this fake detector up, 2mm in z and 2mm*tan(3 deg)= 0.105mm in x
+#virtualdetector BigDisk radius=875 length=1.0 material=Air color=0.9,0.9,0.7 
+#  place BigDisk z=$B2z+2600.0+10 x=-1124.3-0.524  rotation=y-3
+
+#------------------------------------ LArIAT TPC in its original place -------------------------  
+
+#   dimensions from Lariat paper  Note - not rotated with respect to secondary beam/building
+# box LarDet color=.5,.5,1 height=400.0 width=470.0 length=900.0
+# place LarDet z=$B2z+2600.0+1400.0 x=-1150
+#
+# 
+###  material LAr A=40 Z=18 density=1.40 state=l
+###  box TPC height=400 width=460 length=900 material=LAr color=0.9,0.9,0.9
+###  place TPC z=$B2z+$B2ztoTPCcenter rotation=y3 x=28.8
+
+#------------------------------------ Punch paddles? -------------------------  
+#
+#group PunchPaddles
+#virtualdetector Punch height=1010.0 width=310.0 length=10.0 material=POLYSTYRENE color=0.3,0.01,0.85
+#param offset=(310.0/2)-10.0 ## Centers of these paddles go off the beam center a little, but overlap each other.
+#param root2=0.707106781
+#
+#  place Punch rename=PunchUL z=+5.0  x=+$offset
+#  place Punch rename=PunchLR z=-5.0  x=-$offset
+#  place Punch rename=PunchUR z=+15  y=+$offset rotation=z+90
+#  place Punch rename=PunchLL z=+20  y=-$offset rotation=z+90
+#
+#endgroup
+#
+#place PunchPaddles z=$B2z+2600.0+($cosDS*2100) x=-1124.0-($sinDS*2100) rotation=z+45,y-3
+
+#####################################################################################
+########################## PAST LARIAT ORIGINAL LOCATION ############################
+#####################################################################################
+
+#From here on, z positions are very approximate.
+
+#------------------------- WC 5 -------------------------  
+#Fake detector between lariat TPC and MuRS
+
+place DetPrime rename=Det5 z=9416 x=-1150 y=0.0 
+
+#------------------------------------- LArIAT muon range stack (modified to fit current coordinate system) ----------------------------
+
+param muon_stack_x=-1150 
+# #suprajab: same as LArIAT TPC
+# param muon_stack_startz=9891 
+# #suprajab: Z location based on very approximate laser pointer measurement, 18 aug 2022
+param muon_stack_y=0.0
+# #suprajab: same as downstream TOF, which is the last component that has a y value 
+
+# place A_block x=$muon_stack_x y=$floor+0.5*1.5*$feet z=10471
+# place C_block x=$muon_stack_x y=$floor+1.5*$feet+0.5*3*$feet z=10471-0.5*1.5*$feet
+
+# param steel_gap=30
+# box steel_2 height=25.5*$inch width=21*$inch length=20 material=Fe color=0.3,0.0,0.2 kill=$kill_aperture
+# box steel_16 height=25.5*$inch width=21*$inch length=160 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
+# box steel_8 height=25.5*$inch width=21*$inch length=80 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
+# box steel_14 height=25.5*$inch width=21*$inch length=140 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
+# box steel_10 height=25.5*$inch width=21*$inch length=100 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
+
+# place steel_2 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+0.5*20
+# place steel_2 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+3*0.5*20+$steel_gap
+# place steel_16 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+2*$steel_gap+0.5*160
+# place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+3*$steel_gap+2*0.5*160+0.5*80
+# place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+4*$steel_gap+2*0.5*160+3*0.5*80	
+# place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+5*$steel_gap+2*0.5*160+5*0.5*80	
+# place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+6*$steel_gap+2*0.5*160+7*0.5*80
+# place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+7*$steel_gap+2*0.5*160+9*0.5*80
+# place steel_8 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+8*$steel_gap+2*0.5*160+11*0.5*80
+# place steel_14 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+9*$steel_gap+2*0.5*160+12*0.5*80+0.5*140
+# place steel_10 x=$muon_stack_x y=$muon_stack_y z=$muon_stack_startz+4*0.5*20+10*$steel_gap+2*0.5*160+12*0.5*80+2*0.5*140+0.5*10
+
+#------------------------- WC 6 -------------------------  
+# place after MuRS
+
+#place Det rename=Det6 z=11300 x=$muon_stack_x y=$muon_stack_y rotation=y3
+#place ChFram          z=11300 x=$muon_stack_x y=$muon_stack_y rotation=y3
+
+place DetPrime rename=Det6 z=11300 x=$muon_stack_x y=$muon_stack_y 
+
+
+#--------------US pipe holder-------------
+# Reference will be the center of the main H block
+# Downstream end is about 246.75" from the upstream end of the next set of holder blocks
+# So center-to-center from US to DS sets is 246.75"+ H block length
+# param US_pipe_holder_z=$Hblock_z-(246.75*$inch+16*$feet)
+#param US_pipe_holder_z=22800
+
+#place H_block z=$US_pipe_holder_z x=0.0 y=$floor+0.5*1.5*$feet+2*1.5*$feet
+#place E_block z=$US_pipe_holder_z+0.5*16*$feet-0.5*3*$feet-7*$inch x=0.0 y=$floor+0.5*1.5*$feet
+#place E_block z=$US_pipe_holder_z+0.5*16*$feet-0.5*3*$feet-7*$inch x=0.0 y=$floor+1.5*1.5*$feet
+#place E_block z=$US_pipe_holder_z-0.5*16*$feet+0.5*3*$feet+8*$inch x=0.0 y=$floor+0.5*1.5*$feet
+#place E_block z=$US_pipe_holder_z-0.5*16*$feet+0.5*3*$feet+8*$inch x=0.0 y=$floor+1.5*1.5*$feet
+#place F_block z=$US_pipe_holder_z+0.5*16*$feet-0.5*1.5*$feet x=0.0 y=$floor+1.5*$feet+2*1.5*$feet+0.5*1.5*$feet rotation=Y90
+#place F_block z=$US_pipe_holder_z-0.5*16*$feet+0.5*1.5*$feet x=0.0 y=$floor+1.5*$feet+2*1.5*$feet+0.5*1.5*$feet rotation=Y90
+
+#-------------- DS pipe holder (modified to fit current coordinate system) -------------
+
+#box Vis height=100 width=100 length=100 color=1,1,1,0.9
+#place Vis x=0 y=0 z=29657.025
+
+#param ds_pipe_holder_z=29657.025
+
+#place H_block z=$ds_pipe_holder_z x=0 y=$floor+0.5*1.5*$feet+2*$feet
+
+#place K_block z=$ds_pipe_holder_z+6*$feet-24.5*$inch x=0 y=$floor+0.5*$feet
+#place K_block z=$ds_pipe_holder_z+6*$feet-24.5*$inch x=0 y=$floor+1.5*$feet
+#place K_block z=$ds_pipe_holder_z-6*$feet+29.5*$inch-0.5*3*$feet x=0 y=$floor+0.5*$feet
+#place K_block z=$ds_pipe_holder_z-6*$feet+29.5*$inch-0.5*3*$feet x=0 y=$floor+1.5*$feet
+
+#place L_block z=$ds_pipe_holder_z-6*$feet x=0 y=$floor+1.5*$feet+2*$feet+0.5*$feet
+#place L_block z=$ds_pipe_holder_z-6*$feet x=0 y=$floor+1.5*$feet+2*$feet+1.5*$feet
+
+#------------------------- WC Test US -------------------------  
+# place more upstream than Det 7
+
+place DetPrime rename=DetT0 z=5000 x=0 y=$translatey
+
+place DetPrime rename=DetT1 z=10000 x=0 y=$translatey
+
+place DetPrime rename=DetT2 z=29000 x=0 y=$translatey
+
+
+#------------------------- WC 7 -------------------------  
+# place in front of JGG
+
+place DetPrime rename=Det7 z=38000 x=0 y=$translatey 
+
+
+#--------------JGG (modified to fit current coordinate system) ------------------------
+fieldlines center=0,$translatey,39595.425 radius=10000 nLines=1000 color="0,0,0"
+place JGG z=39595.425 y=$translatey x=0
+#place JGG_field z=39595.425 y=$translatey x=0
+
+
+#------------------------- WC 8 -------------------------  
+# place inside of JGG
+
+#place DetPrime rename=Det8 z=39595.425 x=0 y=$translatey 
+
+#-------------------------------------#-------------------------------------#-------------------------------------
+#-------------------------------------#-------------------------------------#-------------------------------------
+#-------------------------------------#-------------------------------------#-------------------------------------
+
+
+#------------------------------------- LArIAT muon range stack (from Nova code) ----------------------------
+
+# Z location is a complete guess. Need alignment data.
+#param muon_stack_z=$US_pipe_holder_z-30*$feet
+#param muon_stack_z=2083 
+#param muon_stack_x=-37*$inch
+#param muon_stack_x=-500
+
+#place A_block x=$muon_stack_x y=$floor+0.5*1.5*$feet z=$muon_stack_z
+#place C_block x=$muon_stack_x y=$floor+1.5*$feet+0.5*3*$feet z=$muon_stack_z-0.5*7.5*$feet+0.5*6*$feet
+
+#param steel_gap=30
+#box steel_2 height=25.5*$inch width=21*$inch length=20 material=Fe color=0.3,0.0,0.2 kill=$kill_aperture
+#box steel_16 height=25.5*$inch width=21*$inch length=160 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
+#box steel_8 height=25.5*$inch width=21*$inch length=80 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
+#box steel_14 height=25.5*$inch width=21*$inch length=140 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
+#box steel_10 height=25.5*$inch width=21*$inch length=100 material=Fe  color=0.3,0.0,0.2 kill=$kill_aperture
+
+#place steel_2 x=$muon_stack_x y=$floor+1.5*$feet+3*$feet+0.5*25.5*$inch z=$muon_stack_z-0.5*7.5*$feet+0.5*20
+#place steel_2 x=$muon_stack_x y=$floor+1.5*$feet+3*$feet+0.5*25.5*$inch z=$muon_stack_z-0.5*7.5*$feet+0.5*20+$steel_gap+0.5*20
+#place steel_16 x=$muon_stack_x y=$floor+1.5*$feet+3*$feet+0.5*25.5*$inch z=$muon_stack_z-0.5*7.5*$feet+40+2*$steel_gap+0.5*160
+#place steel_8 x=$muon_stack_x y=$floor+1.5*$feet+3*$feet+0.5*25.5*$inch z=$muon_stack_z-0.5*7.5*$feet+200+3*$steel_gap+0.5*80
+#place steel_8 x=$muon_stack_x y=$floor+1.5*$feet+3*$feet+0.5*25.5*$inch z=$muon_stack_z-0.5*7.5*$feet+200+4*$steel_gap+1.5*80
+#place steel_8 x=$muon_stack_x y=$floor+1.5*$feet+3*$feet+0.5*25.5*$inch z=$muon_stack_z-0.5*7.5*$feet+200+5*$steel_gap+2.5*80
+#place steel_8 x=$muon_stack_x y=$floor+1.5*$feet+3*$feet+0.5*25.5*$inch z=$muon_stack_z-0.5*7.5*$feet+200+6*$steel_gap+3.5*80
+#place steel_8 x=$muon_stack_x y=$floor+1.5*$feet+3*$feet+0.5*25.5*$inch z=$muon_stack_z-0.5*7.5*$feet+200+7*$steel_gap+4.5*80
+#place steel_8 x=$muon_stack_x y=$floor+1.5*$feet+3*$feet+0.5*25.5*$inch z=$muon_stack_z-0.5*7.5*$feet+200+8*$steel_gap+5.5*80
+#place steel_14 x=$muon_stack_x y=$floor+1.5*$feet+3*$feet+0.5*25.5*$inch z=$muon_stack_z-0.5*7.5*$feet+200+6*80+9*$steel_gap+0.5*140
+#place steel_10 x=$muon_stack_x y=$floor+1.5*$feet+3*$feet+0.5*25.5*$inch z=$muon_stack_z-0.5*7.5*$feet+200+6*80+10*$steel_gap+140+0.5*100
+
+#--------------DS pipe holder (from Nova code) -------------
+
+#place H_block z=$Hblock_z x=0 y=$floor+0.5*1.5*$feet+2*$feet
+
+#place K_block z=$Hblock_z+6*$feet-24.5*$inch x=0 y=$floor+0.5*$feet
+#place K_block z=$Hblock_z+6*$feet-24.5*$inch x=0 y=$floor+1.5*$feet
+#place K_block z=$Hblock_z-6*$feet+29.5*$inch-0.5*3*$feet x=0 y=$floor+0.5*$feet
+#place K_block z=$Hblock_z-6*$feet+29.5*$inch-0.5*3*$feet x=0 y=$floor+1.5*$feet
+
+#place L_block z=$Hblock_z-6*$feet x=0 y=$floor+1.5*$feet+2*$feet+0.5*$feet
+#place L_block z=$Hblock_z-6*$feet x=0 y=$floor+1.5*$feet+2*$feet+1.5*$feet
+
+#--------------JGG (from Nova code) ------------------------
+
+#param JGG_z=$translatez-400-86*$inch-0.5*(60+19.5)*$inch-6183.788
+#param JGG_y=$translatey
+#param JGG_height=137.0*$inch
+#param JGG_width=192.0*$inch
+#param JGG_length=87.0*$inch
+#param JGG_vap=49*$inch
+#param JGG_hap=103.25*$inch
+#param JGG_steel_width=0.5*($JGG_width-$JGG_hap)
+#param JGG_steel_height=0.5*($JGG_height-$JGG_vap)
+
+# Start by just making JGG all steel. Can add complicated coils later if necessary.
+#box JGG_h_steel height=$JGG_steel_height width=$JGG_width length=$JGG_length color=0,0.25,0 kill=$kill_aperture
+#box JGG_v_steel height=$JGG_vap width=$JGG_steel_width length=$JGG_length color=0,0.25,0 kill=$kill_aperture
+
+#place JGG_h_steel x=0 y=$JGG_y+0.5*($JGG_vap+$JGG_steel_height) z=$JGG_z
+#place JGG_h_steel x=0 y=$JGG_y-0.5*($JGG_vap+$JGG_steel_height) z=$JGG_z
+#place JGG_v_steel x=0.5*($JGG_hap+$JGG_steel_width) y=$JGG_y z=$JGG_z
+#place JGG_v_steel x=-0.5*($JGG_hap+$JGG_steel_width) y=$JGG_y z=$JGG_z
+
+#-----------------------------------------
+
+#Check positions, locations, then add two more fake detectors?
+#Note x,y,z positions of all components
+#Make diagram
+#Go to MC7 and confirm the distances are correct
+#Check if I need to add US pipe holder?
+#Fix y coordinate system
+
