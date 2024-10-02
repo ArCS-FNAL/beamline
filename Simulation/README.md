@@ -21,6 +21,8 @@ G4Beamline input files are in `inputs/`. Description:
 | config06 | `arcs_beamline_config06.in`  | Same as config05, but LArIAT bending magnets field can be set with BFIELD | Det8 overlaps with JGG group volume and particles were not saved in this volume. |
 | config07 | `arcs_beamline_config07.in`  | Same as config06, but Det8 has been removed. We have JGGDet1, JGGDet2, JGGDet3 instead, placed at 1/4, 1/2, and 3/4 of the JGG. They no longer overlap with the JGG volume. | |
 | config08 | `arcs_beamline_config08.in`  | Same as config07, but with two disks of 5 mm of steel to emulate the cryostat front face, plus 50 mm of LAr before the TPC. These items are just before JGGDet1, which is still at 1/4 of the JGG. | |
+| config09 | `arcs_beamline_config09.in`  | Same as config08, but with additional WCs on the secondary beamline: DetT0, DetT1, DetT2. | |
+| config10 | `arcs_beamline_config10.in`  | Same as config09, but with the addition of pipe holders and LArIAT muon range stack. | |
 
 
 ## Productions
@@ -47,5 +49,5 @@ Remove all your jobs: `jobsub_rm -all  -G lariat`
 
 To run the simulation on Mac, for testing, go to the `inputs` folder, then:
 ```
-/Applications/G4beamline-3.08.app/Contents/MacOS/g4bl arcs_beamline_config07.in first=0 last=10 BFIELD=-0.2
+/Applications/G4beamline-3.08.app/Contents/MacOS/g4bl arcs_beamline_config10.in first=0 last=10 BFIELD=-0.2
 ```
