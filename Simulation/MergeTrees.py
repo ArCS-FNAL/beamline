@@ -165,7 +165,8 @@ for name, tuple in INtuples.iteritems():
 vars = ('x','y','z','t','Px','Py','Pz','PDGid','ParentID','EventID','TrackID')
 StartLine = ('StartLine',)
 # WCs = ('Det1', 'Det2', 'Det3', 'Det4', 'Det5', 'Det6', 'Det7' , 'Det8')
-WCs = ('Det1', 'Det2', 'Det3', 'Det4', 'Det5', 'Det6', 'Det7' , 'JGGDet1', 'JGGDet2', 'JGGDet3')
+WCs = ('Det1', 'Det2', 'Det3', 'Det4', 'Det5', 'Det6','Det7', 'JGGDet1', 'JGGDet2', 'JGGDet3')
+WCs_Test = ('DetT0','DetT1', 'DetT2')
 Scints = ('TOFus', 'TOFds') # Horz removed
 
 ## One dictionary to rule them all. ##
@@ -174,6 +175,7 @@ Scints = ('TOFus', 'TOFds') # Horz removed
 detsysts = {} 
 detsysts['StartLine'] = StartLine
 detsysts['WCs'] = WCs
+detsysts['WCs_Test'] = WCs_Test
 detsysts['Scints'] = Scints
 
 # Invent some types of struct for holding stuff from the tree,
@@ -197,6 +199,7 @@ for systname,syst in detsysts.iteritems():
 #Make one of each struct to use
 structs = {}
 for systname in detsysts.keys():
+    print("Creating struct for systname:", systname)
     structs[systname] = eval("ROOT."+systname+"stuff()")
 print "Done.",
 

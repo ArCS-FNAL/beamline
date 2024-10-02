@@ -1,22 +1,22 @@
-export BOOKDIR=/pnfs/lariat/resilient/users/mdeltutt/beamline_bookdir
-export OUTDIR=/pnfs/lariat/persistent/users/mdeltutt/BeamLineSimOutputs/pos60Amps/config08_1/
-export G4BNBINPUT=arcs_beamline_config08.in
+export BOOKDIR=/pnfs/lariat/resilient/users/gcicogna/beamline_bookdir
+export OUTDIR=/pnfs/lariat/persistent/users/gcicogna/BeamLineSimOutputs/JGGoff_LArIAToff/config10_1/
+export G4BNBINPUT=arcs_beamline_config10.in
 export OUTFILE=sim_arcs_beamline
 
 # Standard production is done wih 10000 jobs with 30000 pions each
 
 # Number of jobs to submit
-export NJOBS=2 #10000
+export NJOBS=6000
 
 # Number of pions on target per job
-export JOBSIZE=100 #30000
+export JOBSIZE=30000
 
 # LArIAT bending magnets fields
 export BFIELD=0 # magnets off
 #export BFIELD=-0.2121 # 60 Amps pos
-# export BFIELD=-0.3361 # 100 Amps pos
-# export BFIELD=0.2121 # 60 Amps neg
-# export BFIELD=0.3361 # 100 Amps neg
+#export BFIELD=-0.3361 # 100 Amps pos
+#export BFIELD=0.2121 # 60 Amps neg
+#export BFIELD=0.3361 # 100 Amps neg
 
 # Copy all neded files to a folder on resilient
 mkdir -p ${OUTDIR}
