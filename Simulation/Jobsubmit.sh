@@ -1,5 +1,5 @@
 export BOOKDIR=/pnfs/lariat/resilient/users/${USER}/beamline_bookdir
-export OUTDIR=/pnfs/lariat/persistent/users/${USER}/BeamLineSimOutputs/JGGoff_LArIAToff/config10_1/
+export OUTDIR=/pnfs/lariat/persistent/users/${USER}/BeamLineSimOutputs/config11_1/
 export G4BNBINPUT=arcs_beamline_config11.in
 export OUTFILE=sim_arcs_beamline
 

@@ -42,6 +42,7 @@ Produced files are in
 | `config06_1`  | config06  | BFIELD=-0.2121. Same as 05... |
 | `config07_1`  | config07  | BFIELD = 0. Turn off LArIAT magnets. |
 | `config08_1`  | config08  | BFIELD = 0. Turn off LArIAT magnets. |
+| `config11_1`  | config11  | LArIAT magnets: off, JGG: on. |
 
 ## Useful Commands
 
