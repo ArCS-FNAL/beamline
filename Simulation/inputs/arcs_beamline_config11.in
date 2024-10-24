@@ -336,23 +336,22 @@ place L_block z=$ds_pipe_holder_z-6*$feet x=0 y=$floor_magnet+1.25*$feet+2*$feet
 
 place DetPrime rename=Det6 z=11300 x=$muon_stack_x y=$muon_stack_y 
 
-#------------------------- WC Test US -------------------------  
-# #gcicogna: placement of virtual detector more US than Det7
-# dimensions chosen are those of an actual WC (Det)
-
+#------------------------- ArCS WCs and TOFs -------------------------  
 # place WireChamber rename=DetT0 z=5000 x=0 y=$translatey
 place WireChamber rename=DetT1 z=12000 x=0 y=$translatey
-place WireChamber rename=DetT2 z=27000 x=0 y=$translatey
+place WireChamber rename=DetT2 z=35000 x=0 y=$translatey
 
-place TOFus rename=TOF1 z=13000 x=0 y=$translatey
-place TOFds rename=TOF2 z=35000 x=0 y=-11.695 y=$translatey
+place TOFus rename=TOF1 z=12200 x=0 y=$translatey
+place TOFds rename=TOF2 z=35200 x=0 y=-11.695 y=$translatey
 
-
+#------------------------- Beam pipe -------------------------  
+tubs BeamPipe innerRadius=96 outerRadius=100 length=22000 material=Fe
+place BeamPipe z=23500
 
 #------------------------- WC 7 -------------------------  
 # place in front of JGG
 
-place WireChamber rename=Det7 z=36000 x=0 y=$translatey 
+place WireChamber rename=Det7 z=38000 x=0 y=$translatey 
 
 
 #--------------JGG (modified to fit current coordinate system) ------------------------

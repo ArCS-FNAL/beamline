@@ -23,7 +23,7 @@ G4Beamline input files are in `inputs/`. Description:
 | config08 | `arcs_beamline_config08.in`  | Same as config07, but with two disks of 5 mm of steel to emulate the cryostat front face, plus 50 mm of LAr before the TPC. These items are just before JGGDet1, which is still at 1/4 of the JGG. | |
 | config09 | `arcs_beamline_config09.in`  | Same as config08, but with additional WCs on the secondary beamline: DetT0, DetT1, DetT2. | |
 | config10 | `arcs_beamline_config10.in`  | Same as config09, but with the addition of pipe holders and LArIAT muon range stack. | |
-| config11 | `arcs_beamline_config11.in`  | Same as config10, but Det7 is a bit more downstream. Also, DetT0 has been removed and we now have DetT1 and DetT2 as on-axis WCs. Two TOF detectors have been added on-axis: TOF1 and TOF2. | |
+| config11 | `arcs_beamline_config11.in`  | Same as config10, but Det7 is a bit more upstream. Also, DetT0 has been removed and we now have DetT1 and DetT2 as on-axis WCs. Two TOF detectors have been added on-axis: TOF1 and TOF2. The beam pipe has been added.| |
 
 
 ## Productions
