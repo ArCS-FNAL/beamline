@@ -26,6 +26,7 @@ keep_trees = [
     # 'VirtualDetector/DetT0',
     'VirtualDetector/DetT1',
     'VirtualDetector/DetT2',
+    'VirtualDetector/DetT3',
     'VirtualDetector/TOF1',
     'VirtualDetector/TOF2',
     'VirtualDetector/Det7',
